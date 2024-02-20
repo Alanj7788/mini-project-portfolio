@@ -8,7 +8,7 @@ function About() {
   const {lottieURL,description1,description2,skills}=about;
   
   return (
-    
+    {}
     <div>
       <SectionTitle title="About" />
         <div className="flex w-full items-center sm:flex-col">
