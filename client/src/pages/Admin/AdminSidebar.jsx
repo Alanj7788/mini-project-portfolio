@@ -45,6 +45,9 @@ function AdminSidebar() {
         <Form.Item name='instalink' label='Instagram Link'>
           <input placeholder="Instagram Link"/>
         </Form.Item>
+        <Form.Item name='maillink' label='G-Mail Link'>
+          <input placeholder="G-Mail Link"/>
+        </Form.Item>
        
         <div className="flex justify-end w-full">
           <button className="px-10 py-2  bg-primary text-white " type='submit'>SAVE</button>

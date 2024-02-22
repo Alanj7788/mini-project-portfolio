@@ -5,7 +5,8 @@ function LeftSider() {
 
   const {portfolioData}= useSelector(state=>state.root);
   const {left}=portfolioData;
-const {fblink,instalink,gitlink,linkedinlink}=left; 
+const {fblink,instalink,gitlink,linkedinlink,maillink}=left; 
+const mail = `mailto:${maillink || ''}`;
 
   return (
     <div className="fixed left-0 bottom-0 px-10 sm:static">
@@ -27,6 +28,14 @@ const {fblink,instalink,gitlink,linkedinlink}=left;
       <a href={instalink || ''}>
            <i class="ri-instagram-line"></i>
       </a>
+      
+      <a href={mail || ''}>
+    <i className="ri-mail-line"></i>
+</a>
+
+
+
+
     
       </div>
       <div className="w-[1px] h-52 bg-[#245668] sm:hidden">

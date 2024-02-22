@@ -130,6 +130,10 @@ const leftSchema= new mongoose.Schema({
         type:String,
         required:true,
     },
+    maillink: {
+        type: String,
+        required:true,
+    },
 });
 
 module.exports={
