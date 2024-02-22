@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import {Link} from 'react-router-dom'
 
 function Intro() {
   const {loading,portfolioData}= useSelector(state=>state.root);
@@ -15,8 +16,8 @@ function Intro() {
       <p className="text-white w-2/3 sm:w-full">
       {description || ''}
       </p>
-
-   <button className="border-2 border-tertiary text-white px-10 py-3 rounded">Get Started</button>
+    <Link to="/admin"><button className="border-2 border-tertiary text-white px-10 py-3 rounded">Get Started</button></Link>
+    
     </div>
   )
 }
