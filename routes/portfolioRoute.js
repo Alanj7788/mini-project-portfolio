@@ -1,5 +1,5 @@
 const router= require('express').Router();
-const {Intro, About, Project, Contact, Experience, Left}= require('../models/portfolioModel');
+const {Intro, About, Project, Contact, Experience, Left,Academic}= require('../models/portfolioModel');
 
 
 
@@ -15,6 +15,7 @@ router.get('/get-portfolio-data', async(req,res)=>{
         const contacts= await Contact.find();
         const experiences= await Experience.find();
         const sidebars=await Left.find();
+        const academics=await Academic.find();
         res.status(200).send({
             intro:intros[0],
             about:abouts[0],
@@ -22,6 +23,7 @@ router.get('/get-portfolio-data', async(req,res)=>{
             contact:contacts[0],
             experiences: experiences,
             left:sidebars[0],
+            academics:academics,
     })
     }
     catch(error){
@@ -149,6 +151,106 @@ router.post("/delete-experience",async(req,res)=>{
             data:experience,
             success:true,
             message:"Experience deleted successfully",
+        });
+    } catch(error){
+        res.status(500).send(error);
+    }
+});
+
+//add project
+
+router.post("/add-project",async(req,res)=>{
+    try{
+        const project= new Project(req.body);
+        await project.save();
+        res.status(200).send({
+            data:project,
+            success:true,
+            message:"Project added successfully",
+        });
+    }
+    catch(error) {
+        res.status(500).send(error);
+    }
+});
+
+// update project
+router.post("/update-project", async (req, res) => {
+    try {
+      const project = await Project.findOneAndUpdate(
+        { _id: req.body._id },
+        req.body,
+        { new: true }
+      );
+      res.status(200).send({
+        data: project,
+        success: true,
+        message: "Project updated successfully",
+      });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  });
+
+
+//delete project
+router.post("/delete-project",async(req,res)=>{
+    try{
+        const project= await Project.findOneAndDelete({_id:req.body._id});
+        res.status(200).send({
+            data:project,
+            success:true,
+            message:"Project deleted successfully",
+        });
+    } catch(error){
+        res.status(500).send(error);
+    }
+});
+
+//add academics
+
+router.post("/add-academic",async(req,res)=>{
+    try{
+        const academic= new Academic(req.body);
+        await academic.save();
+        res.status(200).send({
+            data:academic,
+            success:true,
+            message:"Details added successfully",
+        });
+    }
+    catch(error) {
+        res.status(500).send(error);
+    }
+});
+
+// update academics
+router.post("/update-academic", async (req, res) => {
+    try {
+      const academic = await Academic.findOneAndUpdate(
+        { _id: req.body._id },
+        req.body,
+        { new: true }
+      );
+      res.status(200).send({
+        data: academic,
+        success: true,
+        message: "Details updated successfully",
+      });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  });
+
+
+//delete academic
+router.post("/delete-academic",async(req,res)=>{
+    try{
+        const academic= await Academic.findOneAndDelete({_id:req.body._id});
+        res.status(200).send({
+            data:academic,
+            success:true,
+            message:"Details deleted successfully",
         });
     } catch(error){
         res.status(500).send(error);

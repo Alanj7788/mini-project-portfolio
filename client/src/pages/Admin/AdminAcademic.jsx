@@ -5,10 +5,10 @@ import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
 import axios from 'axios';
 
 
-function AdminExperience() {
+function AdminAcademic() {
     const dispatch=useDispatch();
     const {portfolioData}= useSelector((state)=>state.root);
-    const {experiences} = portfolioData; 
+    const {academics} = portfolioData; 
     const [showAddEditModal, setShowAddEditModal ] = React.useState(false);
     const [selectedItemForEdit , setselectedItemForEdit]= React.useState(null);
     const [type ="add" , setType]= React.useState("add");
@@ -22,11 +22,11 @@ function AdminExperience() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/portfolio/update-experience", { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post("/api/portfolio/update-academic", { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/portfolio/add-experience",
+          response=await axios.post("/api/portfolio/add-academic",
           values);
         }
         
@@ -53,7 +53,7 @@ function AdminExperience() {
     const onDelete=async (item) => {
       try {
         dispatch(ShowLoading());
-        const response= await axios.post("/api/portfolio/delete-experience",{
+        const response= await axios.post("/api/portfolio/delete-academic",{
           _id:item._id,
         });
         dispatch(HideLoading());
@@ -79,26 +79,27 @@ function AdminExperience() {
           setselectedItemForEdit(null);
           setShowAddEditModal(true);
         }}
-        >Add Experience</button>
+        >Add Academic Details</button>
       </div>
       <div className="grid grid-cols-4 gap-5 mt-5 sm:grid-cols-1">
-        {experiences.map((experience)=>(
+        {academics.map((academic)=>(
             <div className="shadow border border-gray-400 p-5 font-semibold flex flex-col">
-                <h1 className="text-primary text-xl font-extrabold">{experience.period}</h1>
-                <h1>Company : {experience.company}</h1>
-                <h1>Role : {experience.title}</h1>
-                <h1>{experience.description}</h1>
+                <h1 className="text-primary text-xl font-extrabold">{academic.level}</h1>
+                <h1>Name : {academic.name}</h1>
+                <h1>Place : {academic.place}</h1>
+                <h1>Grade : {academic.grade}</h1>
+                <h1>{academic.period}</h1>
                 <div className="flex justify-end gap-5 mt-5">
                 <button className="bg-red-500 text-white px-5 py-2 "
                 
                 onClick={()=>{
-                  onDelete(experience);
+                  onDelete(academic);
                 }}
                 
                 >Delete</button>
                 <button className="bg-primary text-white px-5 py-2 "
                 onClick={()=>{
-                  setselectedItemForEdit(experience);
+                  setselectedItemForEdit(academic);
                   setShowAddEditModal(true);
                   setType("edit");
                 }}
@@ -119,7 +120,7 @@ function AdminExperience() {
         ) &&  <Modal 
         key={type}
         visible={showAddEditModal}
-      title= {selectedItemForEdit ? "Edit Experience" : "Add Experience"}
+      title= {selectedItemForEdit ? "Edit Academic" : "Add Academic"}
       footer={null}
       onCancel={()=>{setShowAddEditModal(false);
       setselectedItemForEdit(null);
@@ -128,18 +129,23 @@ function AdminExperience() {
         <Form layout="vertical" onFinish={onFinish}
         initialValues={selectedItemForEdit}
         >
-          <Form.Item name='period' label='Period'>
+          <Form.Item name='level' label='Level of Study'>
+            <input placeholder="Level" />
+          </Form.Item>
+          <Form.Item name='name' label='Name of School'>
+            <input placeholder="Name" />
+          </Form.Item>
+          <Form.Item name='place' label='Place of School'>
+            <input placeholder="Place" />
+          </Form.Item>
+          <Form.Item name='grade' label='Grade Scored'>
+            <input placeholder="Grade" />
+          </Form.Item>
+          
+          <Form.Item name='period' label='Period of Study'>
             <input placeholder="Period" />
           </Form.Item>
-          <Form.Item name='company' label='Company'>
-            <input placeholder="Company" />
-          </Form.Item>
-          <Form.Item name='title' label='Title'>
-            <input placeholder="Title" />
-          </Form.Item>
-          <Form.Item name='description' label='Description'>
-            <input placeholder="Description" />
-          </Form.Item>
+
           <div className="flex justify-end">
             <button className="border-primary text-primary px-5 py-2" onClick={()=>{
               setShowAddEditModal(false);
@@ -155,4 +161,4 @@ function AdminExperience() {
   )
 }
 
-export default AdminExperience
+export default AdminAcademic

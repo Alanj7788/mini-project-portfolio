@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import AdminSidebar from './AdminSidebar';
 import AdminContact from './AdminContact';
 import AdminExperience from './AdminExperience';
+import AdminProjects from './AdminProjects';
+import AdminAcademic from './AdminAcademic';
 
 
 const { TabPane }= Tabs;
@@ -18,7 +20,7 @@ function Admin() {
         <Header />
         {portfolioData && 
       <div className="mt-5 p-5">
-        <Tabs defaultActiveKey='1'>
+        <Tabs defaultActiveKey='1' tabPosition='left'>
             <TabPane tab="Intro" key="1">
                 <Adminintro />
             </TabPane>
@@ -34,6 +36,13 @@ function Admin() {
             <TabPane tab="Experience" key="5">
                 <AdminExperience />
             </TabPane>
+            <TabPane tab="Project" key="6">
+                <AdminProjects />
+            </TabPane>
+            <TabPane tab="Academics" key="7">
+                <AdminAcademic />
+            </TabPane>
+
         </Tabs>
       </div> }
     </div>

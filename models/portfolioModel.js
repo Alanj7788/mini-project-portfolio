@@ -85,6 +85,30 @@ const projectsSchema = new mongoose.Schema({
     },
 });
 
+const academicSchema = new mongoose.Schema({
+    level: {
+        type: String,
+        required: true,
+    },
+    period: {
+        type: String,
+        required: true,
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    place: {
+        type: String,
+        required: true,
+    },
+    grade: {
+        type: String,
+        required: true,
+    },
+});
+
+
 const contactSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -143,4 +167,5 @@ module.exports={
     Project:mongoose.model("projects",projectsSchema),
     Contact:mongoose.model("contacts",contactSchema),
     Left:mongoose.model("sidebars",leftSchema),
+    Academic:mongoose.model("academics",academicSchema),
 }

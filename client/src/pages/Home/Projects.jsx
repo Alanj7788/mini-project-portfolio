@@ -32,8 +32,8 @@ function Projects() {
     <img src={projects[selectedItemIndex].image} alt="" className="h-60 w-72" />
     <div className="flex flex-col gap-5 ">
     <h1 className="text-secondary text-xl ">{projects[selectedItemIndex].description}</h1>
-    <h1 className="text-[#ade2c1] text-xl ">{projects[selectedItemIndex].link}</h1>
-    <p className="text-white">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+    <a href={projects[selectedItemIndex].link} class="text-[#ade2c1] text-xl">Deployed Link</a>
+    
     </div>
 </div>
 </div>

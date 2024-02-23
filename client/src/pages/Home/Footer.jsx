@@ -12,7 +12,7 @@ function Footer() {
             Designed and Developed By
         </h1>
         <h className="text-white mt-1">
-            <span className="">Alan Jose</span>
+            <span className="">GROUP 6</span>
         </h>
       </div>
     </div>
