@@ -78,6 +78,7 @@ function AdminExperience() {
         onClick={()=>{
           setselectedItemForEdit(null);
           setShowAddEditModal(true);
+          setType("add")
         }}
         >Add Experience</button>
       </div>

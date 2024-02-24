@@ -80,6 +80,7 @@ function AdminProjects() {
         onClick={()=>{
           setselectedItemForEdit(null);
           setShowAddEditModal(true);
+          setType("add")
         }}
         >Add Project</button>
       </div>
