@@ -74,12 +74,21 @@ function AdminAcademic() {
   return (
     <div>
       <div className="flex justify-end">
-        <button className="bg-primary px-5 py-2 text-white" 
+       {/*prevs button was like this  <button className="bg-primary px-5 py-2 text-white" 
         onClick={()=>{
           setselectedItemForEdit(null);
           setShowAddEditModal(true);
         }}
+        >Add Academic Details</button> */}
+        <button className="bg-primary px-5 py-2 text-white" 
+        onClick={()=>{
+          setselectedItemForEdit(null);
+          setShowAddEditModal(true);
+          setType("add")
+        }}
         >Add Academic Details</button>
+
+
       </div>
       <div className="grid grid-cols-4 gap-5 mt-5 sm:grid-cols-1">
         {academics.map((academic)=>(
