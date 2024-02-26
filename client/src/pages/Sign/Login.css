@@ -1,0 +1,108 @@
+.wrapper{
+  width: 420px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0,0,0,.2) ;
+  color: #fff;
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+.wrapper h1{
+  font-size: 36px;
+  text-align: center;
+  color: #fff;
+  font-weight: 900;
+}
+
+.wrapper .input-box{
+  position: relative;
+  width: 420px;
+  height: 50px;
+  margin: 30px 0;
+}
+
+.input-box input{
+  width: 90%;
+  height: 100%;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.2);
+  outline: none;
+  border-radius: 40px;
+  font-size: 20px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+color: #ffff;
+font-weight: bold;
+}
+
+.input-box .icon{
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+
+.wrapper .remember-forget{
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin: -15px 0 15px;
+  font-weight: bold;
+}
+.remember-forget label input{
+  accent-color: #fff;
+  margin-right: 4px;
+}
+
+.remember-forget a{
+  color: #fff;
+  text-decoration: none;
+}
+.remember-forget a:hover{
+  text-decoration: underline;
+}
+
+.wrapper button{
+  width: 100%;
+  height: 45px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,1);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: #0e0d0d;
+  
+}
+
+.wrapper .register-link{
+  font-size: 16px;
+  text-align: center;
+  margin: 20px 0 15px;
+  font-weight: bold;
+}
+
+.register-link p a{
+  color: hsl(0, 0%, 100%);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link p a:hover{
+  text-decoration: underline;
+}
+
+.remember-forget input[type="checkbox"]{
+  width: 14px;
+  height:14px;
+  margin-right: 4px;
+
+}
