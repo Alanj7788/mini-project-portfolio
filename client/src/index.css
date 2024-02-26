@@ -1,4 +1,5 @@
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Poppins:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 
 @tailwind base;
@@ -108,3 +109,31 @@ button:hover{
   color: rgb(133, 232, 214);
 }
 
+
+
+* {
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+ }
+ 
+ 
+ 
+ body {
+   font-family: 'Poppins', sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   background: url('./pages/Assets/background.jpeg');
+   background-size: cover;
+   background-position: center;
+ }
+ 
+ code {
+   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+     monospace;
+ }
+ 
