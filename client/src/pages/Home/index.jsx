@@ -24,10 +24,11 @@ function Home() {
       <div className="bg-primary px-40 sm:px-5">
       <Intro />
       <About />
+      <AcademicDetails />
       <Experiences />
       <Projects />
       <Contact />
-      <AcademicDetails />
+      
       <Footer />
 
       <LeftSider />
