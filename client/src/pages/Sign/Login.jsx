@@ -7,6 +7,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 
 const Loginform = () => {
   return (
+    <div className='image'>
     <div className='wrapper'>
        <form action="">
         <h1>Login</h1>
@@ -29,6 +30,7 @@ const Loginform = () => {
           <p>Don't have an account?<Link to="/Register">Register</Link></p>
         </div>
         </form>
+    </div>
     </div>
    );
 };

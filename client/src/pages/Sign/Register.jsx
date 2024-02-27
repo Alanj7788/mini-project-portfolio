@@ -1,8 +1,10 @@
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import{Link} from "react-router-dom"
+import './Register.css'
 const Register =() =>{
   return(
+    <div className="imager">
 <div className='wrapper'>
        <form action="">
         <h1>Register</h1>
@@ -25,6 +27,7 @@ const Register =() =>{
           <p>Already have an account? <Link to="/">Login</Link></p>
         </div>
         </form>
+        </div>
     </div>
    );
 };
