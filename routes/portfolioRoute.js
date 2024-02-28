@@ -1,9 +1,73 @@
 const router= require('express').Router();
 const {Intro, About, Project, Contact, Experience, Left,Academic}= require('../models/portfolioModel');
+const bcrypt = require('bcrypt');
+const {User} = require('../models/userModel'); // Import your User model
 
+// User registration route
+router.post('/register', async (req, res) => {
+    try {
+      const { email,id, password } = req.body;
+  
+      // Check if the user already exists
+      const existingUser = await User.findOne({ $or: [{email},{id}] });
+      if (existingUser) {
+        // User with the given email already exists
+        return res.status(400).send({ message: "User already exists with this email" });
+      }
+  
+      // Hash the password
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+  
+      // Create a new user
+      const newUser = new User({ email,id, password: hashedPassword });
+      await newUser.save();
+  
+      // User registered successfully
+      res.status(200).send({success:true, message: "User registered successfully" });
+    }
+     catch (error) {
+      console.error(error);
 
+      // Enhance error handling - log the specific error message
+      res.status(500).send({ error: "Internal Server Error" });
+    }
+});
 
+// userRoute.js
+// ... (existing code)
 
+// User login route
+router.post('/login', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      // Find the user by email
+      const user = await User.findOne({ email });
+  
+      // Check if the user exists
+      if (!user) {
+        return res.status(404).send({ message: 'User not found' });
+      }
+  
+      // Check if the password is correct
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+  
+      if (!isPasswordValid) {
+        return res.status(401).send({ message: 'Invalid password' });
+      }
+  
+      // If user and password are valid, consider implementing JWT for authentication
+      // For simplicity, you can send a success message
+      res.status(200).send({ success:true,message: 'Login successful' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ error: 'Internal Server Error' });
+    }
+  });
+  
+  // ... (existing code)
+  
 
 //get portfolio data
 router.get('/get-portfolio-data', async(req,res)=>{
