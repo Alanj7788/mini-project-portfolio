@@ -5,37 +5,39 @@ const {User} = require('../models/userModel'); // Import your User model
 
 // User registration route
 router.post('/register', async (req, res) => {
-    try {
+    
       const { email,id, password } = req.body;
   
       // Check if the user already exists
-      const existingUser = await User.findOne({ $or: [{email},{id}] });
+      let existingUser = await User.findOne({ $or: [{email},{id}] });
+
       if (existingUser) {
         // User with the given email already exists
-        return res.status(400).send({ message: "User already exists with this email" });
+        return res.status(200).send({ success:false,message: "User already exists with this email or id" });
       }
-  
+      else {
       // Hash the password
-      const saltRounds = 10;
-      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      const hashedPassword =  bcrypt.hashSync(password, 10);
   
       // Create a new user
-      const newUser = new User({ email,id, password: hashedPassword });
-      await newUser.save();
-  
-      // User registered successfully
-      res.status(200).send({success:true, message: "User registered successfully" });
-    }
-     catch (error) {
-      console.error(error);
+      let user
+      try {
+        const newUser =await new User({ email,id, password: hashedPassword });
+        user=await newUser.save();
+      }
+      catch(err){
+        return res.status(200).send({ success:false,error: "Can't Register" });
+        console.log(err)
+      }
+      if (user){
+        return res.status(200).send({success:true, message: "User registered successfully" });
+      }
 
       // Enhance error handling - log the specific error message
-      res.status(500).send({ error: "Internal Server Error" });
+     return res.status(200).send({ error: "Internal Server Error" });
     }
 });
 
-// userRoute.js
-// ... (existing code)
 
 // User login route
 router.post('/login', async (req, res) => {
@@ -47,22 +49,22 @@ router.post('/login', async (req, res) => {
   
       // Check if the user exists
       if (!user) {
-        return res.status(404).send({ message: 'User not found' });
+        return res.status(200).send({ message: 'User not found' });
       }
   
       // Check if the password is correct
       const isPasswordValid = await bcrypt.compare(password, user.password);
   
       if (!isPasswordValid) {
-        return res.status(401).send({ message: 'Invalid password' });
+        return res.status(200).send({ message: 'Invalid password' });
       }
   
       // If user and password are valid, consider implementing JWT for authentication
       // For simplicity, you can send a success message
-      res.status(200).send({ success:true,message: 'Login successful' });
+      return res.status(200).send({ success:true,message: 'Login successful' });
     } catch (error) {
       console.error(error);
-      res.status(500).send({ error: 'Internal Server Error' });
+      return res.status(200).send({ error: 'Internal Server Error' });
     }
   });
   
