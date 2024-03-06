@@ -61,7 +61,8 @@ router.post('/login', async (req, res) => {
   
       // If user and password are valid, consider implementing JWT for authentication
       // For simplicity, you can send a success message
-      return res.status(200).send({ success:true,message: 'Login successful' });
+      console.log(user)
+      return res.status(200).send({user, success:true,message: 'Login successful' });
     } catch (error) {
       console.error(error);
       return res.status(200).send({ error: 'Internal Server Error' });
@@ -72,10 +73,12 @@ router.post('/login', async (req, res) => {
   
 
 //get portfolio data
-router.get('/get-portfolio-data', async(req,res)=>{
-
+router.get('/get-portfolio-data/:id', async(req,res)=>{
+    const id = req.params.id
+console.log(id)
     try{
-        const intros= await Intro.find();
+        const intros= await Intro.findOne({id:id});
+        console.log(intros)
         const abouts= await About.find();
         const projects= await Project.find();
         const contacts= await Contact.find();
@@ -83,7 +86,7 @@ router.get('/get-portfolio-data', async(req,res)=>{
         const sidebars=await Left.find();
         const academics=await Academic.find();
         res.status(200).send({
-            intro:intros[0],
+            intro:intros,
             about:abouts[0],
             projects:projects,
             contact:contacts[0],
@@ -98,12 +101,12 @@ router.get('/get-portfolio-data', async(req,res)=>{
 });
 
 //update intro
-router.post("/update-intro",async (req,res)=>{
+router.post("/update-intro/:id",async (req,res)=>{
+
+    const { id } = req.params
+  
     try {
-        const intro = await Intro.findOneAndUpdate(
-            {_id:req.body._id},
-            req.body,
-            {new:true}
+        const intro = await Intro.findOneAndUpdate( {_id:req.body._id},{id:id} ,req.body, {new:true}
         );
     res.status(200).send({
         data:intro,

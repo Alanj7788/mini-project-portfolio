@@ -5,7 +5,7 @@ const introSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    id:{
+    Ownerid:{
         type:String,
         required:true
     },
