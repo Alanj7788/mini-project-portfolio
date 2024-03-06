@@ -17,12 +17,12 @@ function App() {
   const {loading,portfolioData, reloadData}= useSelector(state=>state.root);
 
   const dispatch = useDispatch();
-
+  const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
   const getPortfolioData= async()=>{
     try{
       dispatch(ShowLoading());
-      const response= await axios.get('./api/portfolio/get-portfolio-data');
+      const response= await axios.get('./api/portfolio/get-portfolio-data/'+user._id);
       dispatch(setPortfolioData(response.data));
 
       dispatch(ReloadData(false))
