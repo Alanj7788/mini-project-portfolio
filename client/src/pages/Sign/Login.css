@@ -122,7 +122,7 @@ font-weight: bold;
    justify-content: center;
    align-items: center;
    min-height: 100vh;
-   background: url('C:\Users\geeth\OneDrive\Desktop\project\mini-project-portfolio\client\src\pages\Assets\login');
+   background: rgb(129, 129, 229);
    background-size: cover;
    background-position: center;
  }
