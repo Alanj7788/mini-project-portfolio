@@ -22,7 +22,7 @@ const[data,setdata] = useState('')
   const getPortfolioData= async()=>{
     try{
       dispatch(ShowLoading());
-      const response= await axios.get('./api/portfolio/get-portfolio-data/');
+      const response= await axios.get('./api/portfolio/get-portfolio-data/ '+user.id);
       setdata(response.data)
       console.log(data)
       dispatch(setPortfolioData(response.data));

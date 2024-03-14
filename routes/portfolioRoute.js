@@ -73,7 +73,7 @@ router.post('/login', async (req, res) => {
 
 
 //get portfolio data
-router.get('/get-portfolio-data/', async (req, res) => {
+router.get('/get-portfolio-data/:id', async (req, res) => {
   const id = req.params.id
   console.log(id)
   try {
