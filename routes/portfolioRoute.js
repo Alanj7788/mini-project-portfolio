@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 
     // If user and password are valid, consider implementing JWT for authentication
     // For simplicity, you can send a success message
-    console.log(user)
+   
     return res.status(200).send({ user, success: true, message: 'Login successful' });
   } catch (error) {
     console.error(error);
@@ -73,60 +73,93 @@ router.post('/login', async (req, res) => {
 
 
 //get portfolio data
-router.get('/get-portfolio-data/:id', async (req, res) => {
-  const id = req.params.id
-  console.log(id)
+router.get('/get-portfolio-data/user/:id', async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
   try {
-    // const users = await users.findOne({ id: id });
-    // console.log(users)
-
-    const intros = await Intro.findone({});
-    const abouts = await About.find();
-    const projects = await Project.find();
-    const contacts = await Contact.find();
-    const experiences = await Experience.find();
-    const sidebars = await Left.find();
-    const academics = await Academic.find();
+    const intros = await Intro.findOne({ ownerid: id });
+    const abouts = await About.findOne({ ownerid: id });
+    const projects = await Project.find({ ownerid: id });
+    const contacts = await Contact.findOne({ ownerid: id });
+    const experiences = await Experience.find({ ownerid: id });
+    const sidebars = await Left.findOne({ ownerid: id });
+    const academics = await Academic.find({ ownerid: id });
+console.log(sidebars)
     res.status(200).send({
-      intro: intros[0],
-      about: abouts[0],
+      intro: intros,
+      about: abouts,
       projects: projects,
-      contact: contacts[0],
+      contact: contacts,
       experiences: experiences,
-      left: sidebars[0],
+      left: sidebars,
       academics: academics,
-    })
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+//Initial intro
+router.post("/initialintro", async (req, res) => {
+  const {ownerid,welcomeText,firstName,lastName,description,caption} = req.body
+  try {
+    const intro = new About({ownerid,welcomeText,firstName,lastName,description,caption});
+    await intro.save()
+    res.status(200).send({ message: "intro updated successfully" });
   }
   catch (error) {
     res.status(500).send(error);
   }
 });
-
 //update intro
 router.post("/update-intro/:id", async (req, res) => {
-
-  const { id } = req.params
+  const { id } = req.params;
 
   try {
-    const intro = await Intro.findOneAndUpdate({ _id: req.body._id }, { id: id }, req.body, { new: true }
+    const updatedIntro = await Intro.findOneAndUpdate(
+      { _id: id }, // Use the provided id to find the intro document
+      req.body,   // Update with the provided request body
+      { new: true }
     );
+
     res.status(200).send({
-      data: intro,
+      data: updatedIntro,
       success: true,
       message: "Intro updated successfully"
     });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+});
+
+
+
+
+//Initial about
+router.post("/initialAbout", async (req, res) => {
+  const {ownerid,lottieURL,description1,description2,skills} = req.body
+  try {
+    const about = new About({ownerid,lottieURL,description1,description2,skills});
+    await about.save()
+    res.status(200).send({ message: "About updated successfully" });
   }
   catch (error) {
     res.status(500).send(error);
   }
 });
 
+
 //update about
-router.post("/update-about", async (req, res) => {
+router.post("/update-about/:id", async (req, res) => {
+  const id = req.params.id
+  const {lottieURL,description1,description2,skills} = req.body
+  console.log(req.body)
   try {
     const about = await About.findOneAndUpdate(
-      { _id: req.body._id },
-      req.body,
+      { _id: req.body._id },{lottieURL,description1,description2,skills,ownerid:id},
       { new: true }
     );
     res.status(200).send({
@@ -140,12 +173,28 @@ router.post("/update-about", async (req, res) => {
   }
 });
 
+
+//Initial value of sidebar
+
+router.post("/initialsidebar", async (req, res) => {
+  const {ownerid,fblink,gitlink,linkedinlink,instalink,maillink} = req.body
+  try {
+    const newLeft =  new Left({ownerid,fblink,gitlink,linkedinlink,instalink,maillink});
+    await newLeft.save();
+    res.status(200).send({message:"successfull" });
+  }
+  catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 //update sidebar link
-router.post("/update-left", async (req, res) => {
+router.post("/update-left/:id", async (req, res) => {
+  const{id}=req.params.id
+  const {fblink,gitlink,linkedinlink,instalink,maillink} = req.body
   try {
     const left = await Left.findOneAndUpdate(
-      { _id: req.body._id },
-      req.body,
+      { _id: req.body._id },{fblink,gitlink,linkedinlink,instalink,maillink,ownerid:id},
       { new: true }
     );
     res.status(200).send({
@@ -160,11 +209,13 @@ router.post("/update-left", async (req, res) => {
 });
 
 //update contacts
-router.post("/update-contact", async (req, res) => {
+router.post("/update-contact/:id", async (req, res) => {
+  const {id}=req.params
+  console.log("jiiji",id)
+  const {name,email,gender,age,mobile,address} =req.body
   try {
     const contact = await Contact.findOneAndUpdate(
-      { _id: req.body._id },
-      req.body,
+      { _id: req.body._id },{name,email,gender,age,mobile,address,ownerid:id},
       { new: true }
     );
     res.status(200).send({
@@ -180,9 +231,12 @@ router.post("/update-contact", async (req, res) => {
 
 //add experience
 
-router.post("/add-experience", async (req, res) => {
+router.post("/add-experience/:id", async (req, res) => {
+  const { id } = req.params;
+  const {title,period,company,description} =req.body
+  
   try {
-    const experience = new Experience(req.body);
+    const experience = new Experience({title,period,company,description,ownerid:id});
     await experience.save();
     res.status(200).send({
       data: experience,
@@ -196,11 +250,13 @@ router.post("/add-experience", async (req, res) => {
 });
 
 // update experience
-router.post("/update-experience", async (req, res) => {
+router.post("/update-experience/:id", async (req, res) => {
+  const {id} = req.params
+  console.log("hai",id)
+  const {title,period,company,description} = req.body
   try {
     const experience = await Experience.findOneAndUpdate(
-      { _id: req.body._id },
-      req.body,
+      { _id: req.body._id },{title,period,company,description,ownerid:id},
       { new: true }
     );
     res.status(200).send({
@@ -230,9 +286,11 @@ router.post("/delete-experience", async (req, res) => {
 
 //add project
 
-router.post("/add-project", async (req, res) => {
+router.post("/add-project/:id", async (req, res) => {
+  const {id}=req.params
+  const {title,image,description,link,technolgies} = req.body
   try {
-    const project = new Project(req.body);
+    const project = new Project({title,image,description,link,technolgies,ownerid:id});
     await project.save();
     res.status(200).send({
       data: project,
@@ -246,11 +304,12 @@ router.post("/add-project", async (req, res) => {
 });
 
 // update project
-router.post("/update-project", async (req, res) => {
+router.post("/update-project/:id", async (req, res) => {
+  const {id}=req.params
+  const {title,image,description,link,technolgies} = req.body
   try {
     const project = await Project.findOneAndUpdate(
-      { _id: req.body._id },
-      req.body,
+      { _id: req.body._id },{title,image,description,link,technolgies,ownerid:id},
       { new: true }
     );
     res.status(200).send({
@@ -280,9 +339,11 @@ router.post("/delete-project", async (req, res) => {
 
 //add academics
 
-router.post("/add-academic", async (req, res) => {
+router.post("/add-academic/:id", async (req, res) => {
+  const {id}=req.params
+  const {level,period,name,place,grade} = req.body
   try {
-    const academic = new Academic(req.body);
+    const academic = new Academic({ownerid:id,level,period,name,place,grade});
     await academic.save();
     res.status(200).send({
       data: academic,
@@ -296,11 +357,12 @@ router.post("/add-academic", async (req, res) => {
 });
 
 // update academics
-router.post("/update-academic", async (req, res) => {
+router.post("/update-academic/:id", async (req, res) => {
+  const {id}=req.params
+  const {level,period,name,place,grade} = req.body
   try {
     const academic = await Academic.findOneAndUpdate(
-      { _id: req.body._id },
-      req.body,
+      { _id: req.body._id },{level,period,name,place,grade},
       { new: true }
     );
     res.status(200).send({
