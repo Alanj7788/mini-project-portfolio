@@ -26,6 +26,8 @@ function Register(){
 
   axios.post("/api/portfolio/initialAbout",{ownerid:id,lottieURL:"Enter:",description1:"Enter:",description2:"Enter:",skills:"Enter:"})
 
+  axios.post("/api/portfolio/initialContact",{name:"Enter",email:"Enter",gender:"Enter",age:"Enter",mobile:"Enter",address:"Enter",ownerid:id})
+
     // Add validation logic
     if (password !== confirmPassword) {
       alert('Passwords do not match');

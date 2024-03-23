@@ -10,7 +10,7 @@ function Search() {
       try {
         // Make a GET request to fetch all user IDs
         const response = await axios.get('/api/get-all-user-ids');
-        console.log(response)
+        
         // Update the state with the fetched user IDs
         setUserIds(response.data);
       } catch (error) {

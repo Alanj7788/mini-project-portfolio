@@ -105,7 +105,7 @@ console.log(sidebars)
 router.post("/initialintro", async (req, res) => {
   const {ownerid,welcomeText,firstName,lastName,description,caption} = req.body
   try {
-    const intro = new About({ownerid,welcomeText,firstName,lastName,description,caption});
+    const intro = new Intro({ownerid,welcomeText,firstName,lastName,description,caption});
     await intro.save()
     res.status(200).send({ message: "intro updated successfully" });
   }
@@ -115,12 +115,12 @@ router.post("/initialintro", async (req, res) => {
 });
 //update intro
 router.post("/update-intro/:id", async (req, res) => {
-  const { id } = req.params;
-
+  const  id  = req.params.id;
+  const {ownerid,welcomeText,firstName,lastName,description,caption} = req.body
   try {
     const updatedIntro = await Intro.findOneAndUpdate(
-      { _id: id }, // Use the provided id to find the intro document
-      req.body,   // Update with the provided request body
+      { _id: req.body._id }, // Use the provided id to find the intro document
+      {ownerid:id,welcomeText,firstName,lastName,description,caption},
       { new: true }
     );
 
@@ -208,10 +208,24 @@ router.post("/update-left/:id", async (req, res) => {
   }
 });
 
+//initial contact
+router.post("/initialContact", async (req, res) => {
+  const {ownerid,name,email,gender,age,mobile,address} = req.body
+  try {
+    const contact = new Contact({ownerid,name,email,gender,age,mobile,address});
+    await contact.save()
+    res.status(200).send({ message: "contact updated successfully" });
+  }
+  catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+
 //update contacts
 router.post("/update-contact/:id", async (req, res) => {
-  const {id}=req.params
-  console.log("jiiji",id)
+  const id=req.params.id
+  
   const {name,email,gender,age,mobile,address} =req.body
   try {
     const contact = await Contact.findOneAndUpdate(
@@ -221,7 +235,7 @@ router.post("/update-contact/:id", async (req, res) => {
     res.status(200).send({
       data: contact,
       success: true,
-      message: "Sidebar links updated successfully"
+      message: "Contacts updated successfully"
     });
   }
   catch (error) {
