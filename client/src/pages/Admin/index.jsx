@@ -9,6 +9,7 @@ import AdminContact from './AdminContact';
 import AdminExperience from './AdminExperience';
 import AdminProjects from './AdminProjects';
 import AdminAcademic from './AdminAcademic';
+import Navbar from '../../components/Navbar';
 
 
 const { TabPane }= Tabs;
@@ -17,7 +18,7 @@ function Admin() {
 
   return (
     <div className="">
-        <Header />
+        <Navbar />
         {portfolioData && 
       <div className="mt-5 p-5">
         <Tabs defaultActiveKey='1' tabPosition='left'>

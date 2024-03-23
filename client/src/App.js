@@ -6,11 +6,11 @@ import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
 import { HideLoading, ReloadData, ShowLoading, setPortfolioData } from "./redux/rootSlice";
 import Admin from "./pages/Admin";
-import Welcome from "./pages/common/Welcome";
+import Welcome from "./pages/FirstPage/Welcome";
 import Login from "./pages/Sign/Login";
 import Register from "./pages/Sign/Register";
-import Search from "./pages/common/Search";
-import ContactIssue from "./pages/common/ContactIssue";
+import Search from "./pages/FirstPage/Search";
+import ContactIssue from "./pages/FirstPage/ContactIssue";
 
 
 function App() {
@@ -48,9 +48,9 @@ function App() {
    <BrowserRouter>
    {loading ? <Loader /> :null}
    <Routes>
-    <Route path="/" element={<Home />} />
+    <Route path="/portfolio" element={<Home />} />
     <Route path="/admin" element={<Admin />} />
-    <Route path="/welcome" element={<Welcome />} />
+    <Route path="/" element={<Welcome />} />
     <Route path="/search" element={<Search />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
