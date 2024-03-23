@@ -13,8 +13,9 @@ function AdminProjects() {
     const [selectedItemForEdit , setselectedItemForEdit]= React.useState(null);
     const [type ="add" , setType]= React.useState("add");
     
+    const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
-
+console.log(user.id)
     const onFinish=async(values)=>{
 
       try{
@@ -24,11 +25,11 @@ function AdminProjects() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/portfolio/update-project", { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post("/api/portfolio/update-project/"+user.id, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/portfolio/add-project",
+          response=await axios.post("/api/portfolio/add-project/"+user.id,
           values);
         }
         

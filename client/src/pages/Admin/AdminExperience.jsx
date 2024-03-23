@@ -14,6 +14,7 @@ function AdminExperience() {
     const [type ="add" , setType]= React.useState("add");
     
 
+    const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
     const onFinish=async(values)=>{
 
@@ -22,11 +23,11 @@ function AdminExperience() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/portfolio/update-experience", { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post("/api/portfolio/update-experience/"+user.id, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/portfolio/add-experience",
+          response=await axios.post("/api/portfolio/add-experience/"+user.id,
           values);
         }
         

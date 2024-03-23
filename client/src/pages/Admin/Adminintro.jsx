@@ -16,7 +16,7 @@ function Adminintro() {
   const onFinish=async(values)=>{
     try{
       dispatch(ShowLoading())
-      const response= await axios.post("/api/portfolio/update-intro/" + user._id, { 
+      const response= await axios.post("/api/portfolio/update-intro/" + user.id, { 
       ...values,_id: portfolioData.intro._id,});
 
         dispatch(HideLoading())

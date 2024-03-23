@@ -5,6 +5,7 @@ import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
 import axios from 'axios';
 
 
+
 function AdminAcademic() {
     const dispatch=useDispatch();
     const {portfolioData}= useSelector((state)=>state.root);
@@ -13,6 +14,7 @@ function AdminAcademic() {
     const [selectedItemForEdit , setselectedItemForEdit]= React.useState(null);
     const [type ="add" , setType]= React.useState("add");
     
+    const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
 
     const onFinish=async(values)=>{
@@ -22,11 +24,11 @@ function AdminAcademic() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/portfolio/update-academic", { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post("/api/portfolio/update-academic/"+user.id, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/portfolio/add-academic",
+          response=await axios.post("/api/portfolio/add-academic/"+user.id,
           values);
         }
         
