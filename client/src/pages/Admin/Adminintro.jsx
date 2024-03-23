@@ -10,10 +10,13 @@ function Adminintro() {
   const dispatch = useDispatch();
 
   const {portfolioData} = useSelector((state)=> state.root);
+
+  const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+
   const onFinish=async(values)=>{
     try{
       dispatch(ShowLoading())
-      const response= await axios.post("/api/portfolio/update-intro", { 
+      const response= await axios.post("/api/portfolio/update-intro/" + user.id, { 
       ...values,_id: portfolioData.intro._id,});
 
         dispatch(HideLoading())

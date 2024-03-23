@@ -14,9 +14,18 @@ function Register(){
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
+
+
   const handleRegister = async (event) => {
+
     event.preventDefault();
-  
+
+  axios.post("/api/portfolio/initialsidebar",{ownerid:id,fblink:"Enter:",gitlink:"Enter:",instalink:"Enter:", linkedinlink:"Enter:",maillink:"Enter:"})
+   
+  axios.post("/api/portfolio/initialintro",{ownerid:id,welcomeText:"Enter:",firstName:"Enter:",lastName:"Enter:",description:"Enter:",caption:"Enter:"})
+
+  axios.post("/api/portfolio/initialAbout",{ownerid:id,lottieURL:"Enter:",description1:"Enter:",description2:"Enter:",skills:"Enter:"})
+
     // Add validation logic
     if (password !== confirmPassword) {
       alert('Passwords do not match');

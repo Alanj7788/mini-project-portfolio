@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
 const introSchema = new mongoose.Schema({
+    ownerid:{
+        type:String
+    },
     welcomeText: {
         type: String,
         required: true
-    },
-    id:{
-        type:String,
-        required:true
     },
     firstName: {
         type: String,
@@ -28,6 +27,9 @@ const introSchema = new mongoose.Schema({
 });
 
 const aboutSchema = new mongoose.Schema({
+    ownerid:{
+        type:String
+    },
     lottieURL: {
         type: String,
         required: true
@@ -47,6 +49,9 @@ const aboutSchema = new mongoose.Schema({
 });
 
 const experienceSchema = new mongoose.Schema({
+    ownerid:{
+        type:String
+    },
     title: {
         type: String,
         required: true,
@@ -66,6 +71,9 @@ const experienceSchema = new mongoose.Schema({
 });
 
 const projectsSchema = new mongoose.Schema({
+    ownerid:{
+        type:String
+    },
     title: {
         type: String,
         required: true,
@@ -90,6 +98,9 @@ const projectsSchema = new mongoose.Schema({
 });
 
 const academicSchema = new mongoose.Schema({
+    ownerid:{
+        type:String
+    },
     level: {
         type: String,
         required: true,
@@ -114,6 +125,9 @@ const academicSchema = new mongoose.Schema({
 
 
 const contactSchema = new mongoose.Schema({
+    ownerid:{
+        type:String
+    },
     name: {
         type: String,
         required: true,
@@ -142,6 +156,9 @@ const contactSchema = new mongoose.Schema({
 });
 
 const leftSchema= new mongoose.Schema({
+    ownerid:{
+        type:String
+    },
     fblink: {
         type:String,
         required:true,
