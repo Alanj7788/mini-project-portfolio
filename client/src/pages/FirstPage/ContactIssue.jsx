@@ -41,7 +41,7 @@ export default function ContactIssue() {
   return (
     <div>
       <div className="flex w-full min-h-screen justify-center items-center">
-        <div className="flex flex-col md:flex-row  md:space-x-6 space-y-6 md:space-y-0 bg-blue-700 w-full max-w-4xl p-8 rounded-xl shadow-lg text-white sm:p-12">
+        <div className="flex flex-col md:flex-row  md:space-x-6 space-y-6 md:space-y-0 bg-teal-400 bg-opacity-20 w-full max-w-4xl p-8 rounded-xl shadow-lg text-black sm:p-12">
           <div className="flex flex-col space-y-8 justify between">
             <div>
               <h1 className="font-bold text-4xl tracking-wide">Contact us</h1>
@@ -53,7 +53,7 @@ export default function ContactIssue() {
                   name="call"
                   className="text-green-300 text-xl"
                 ></ion-icon>
-                <span>+ (123) 456 7890</span>
+                <span>998877497566</span>
               </div>
               <div className="inline-flex space-x-2 items-center">
                 <ion-icon
