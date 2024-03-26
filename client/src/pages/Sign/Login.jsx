@@ -27,12 +27,14 @@ const Loginform = () => {
       if (response.data.success) {
         console.log(response.data.user);
         message.success(response.data.message);
-        window.localStorage.setItem("userInfo", JSON.stringify(response.data.user))
-                navigate('/admin');
-                
-                  window.location.reload();
-              
-      } else {
+        window.localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+        
+            
+        navigate('/admin');
+        window.location.reload();
+
+    }
+     else {
         message.error(response.data.message);
       }
     } catch (error) {
