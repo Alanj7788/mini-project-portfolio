@@ -116,7 +116,7 @@ router.post("/initialintro", async (req, res) => {
 //update intro
 router.post("/update-intro/:id", async (req, res) => {
   const  id  = req.params.id;
-  const {ownerid,welcomeText,firstName,lastName,description,caption} = req.body
+  const {welcomeText,firstName,lastName,description,caption} = req.body
   try {
     const updatedIntro = await Intro.findOneAndUpdate(
       { _id: req.body._id }, // Use the provided id to find the intro document
@@ -209,7 +209,7 @@ router.post("/update-left/:id", async (req, res) => {
 });
 
 //initial contact
-router.post("/initialContact", async (req, res) => {
+router.post("/initialcontact", async (req, res) => {
   const {ownerid,name,email,gender,age,mobile,address} = req.body
   try {
     const contact = new Contact({ownerid,name,email,gender,age,mobile,address});

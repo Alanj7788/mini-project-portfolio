@@ -8,6 +8,10 @@ function Experiences() {
   const {experiences}=portfolioData;
   
     const [selectedItemIndex, setSelectedItemIndex]=React.useState(0);
+    if (!experiences || experiences.length === 0) {
+      return null; // Hide the component if experiences data is not available
+    }
+
   return (
     <div>
       <SectionTitle  title="Experience"/>

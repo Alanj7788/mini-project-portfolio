@@ -13,7 +13,7 @@ function About() {
       <SectionTitle title="About" />
         <div className="flex w-full items-center sm:flex-col">
             <div className="h-[70vh] w-1/2 sm:w-full">
-            <lottie-player src={lottieURL} background="##fff" loop="4" speed="1"  autoplay direction="1" mode="normal"></lottie-player >
+            <lottie-player src="https://lottie.host/19168d10-5785-4ca6-b1a5-e438b51a74a2/mlauqMasuS.json" background="##fff" loop="4" speed="1"  autoplay direction="1" mode="normal"></lottie-player >
             </div>
 
           <div className="flex flex-col gap-5 w-1/2 sm:w-full">

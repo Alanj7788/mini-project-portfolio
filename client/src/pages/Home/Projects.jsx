@@ -8,6 +8,12 @@ function Projects() {
   const {portfolioData}= useSelector(state=>state.root);
   const {projects}=portfolioData;
     const [selectedItemIndex, setSelectedItemIndex]=React.useState(0);
+  
+    if (!projects || projects.length === 0) {
+      return null; // Hide the component if projects data is not available
+    }
+
+
   return (
     <div>
       <SectionTitle  title="Projects"/>

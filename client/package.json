@@ -8,6 +8,7 @@
     "@ionic/react": "^7.7.3",
     "@mui/x-data-grid-generator": "^6.19.6",
     "@reduxjs/toolkit": "^2.2.1",
+    "@splinetool/runtime": "^1.0.82",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

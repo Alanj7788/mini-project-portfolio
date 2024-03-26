@@ -26,7 +26,7 @@ function Register(){
 
   axios.post("/api/portfolio/initialAbout",{ownerid:id,lottieURL:"Enter:",description1:"Enter:",description2:"Enter:",skills:"Enter:"})
 
-  axios.post("/api/portfolio/initialContact",{name:"Enter",email:"Enter",gender:"Enter",age:"Enter",mobile:"Enter",address:"Enter",ownerid:id})
+  axios.post("/api/portfolio/initialcontact",{name:"Enter",email:"Enter",gender:"Enter",age:"Enter",mobile:"Enter",address:"Enter",ownerid:id})
 
     // Add validation logic
     if (password !== confirmPassword) {
@@ -115,7 +115,7 @@ function Register(){
           <button type="submit" >Register</button>
 
           <div className="register-link">
-            <p>Already have an account? <Link to="/">Login</Link></p>
+            <p>Already have an account? <Link to="/login">Login</Link></p>
           </div>
         </form>
       </div>

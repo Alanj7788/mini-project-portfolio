@@ -17,7 +17,7 @@ function AdminContact() {
     try {
 
       dispatch(ShowLoading())
-      const response = await axios.post("/api/portfolio/update-contact/"+user.id, {
+      const response = await axios.post(`/api/portfolio/update-contact/${user.id}`, {
         ...values, _id: portfolioData.contact._id,
       });
 

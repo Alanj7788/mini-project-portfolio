@@ -8,6 +8,12 @@ function AcademicDetails() {
   const {academics}=portfolioData;
   
     const [selectedItemIndex, setSelectedItemIndex]=React.useState(0);
+
+    if (!academics || academics.length === 0) {
+      return null; // Hide the component if academics data is not available
+    }
+
+
   return (
     <div>
       <SectionTitle  title="Academic"/>

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { Link } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
-import { RiLockPasswordFill } from "react-icons/ri";
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading } from "../../redux/rootSlice";
@@ -30,7 +28,10 @@ const Loginform = () => {
         console.log(response.data.user);
         message.success(response.data.message);
         window.localStorage.setItem("userInfo", JSON.stringify(response.data.user))
-        navigate('/admin');
+                navigate('/admin');
+                
+                  window.location.reload();
+              
       } else {
         message.error(response.data.message);
       }
@@ -41,7 +42,7 @@ const Loginform = () => {
   };
 
   return (
-    <div className='image'>
+    <div className='bg'>
       <div className='wrapper'>
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
@@ -53,7 +54,6 @@ const Loginform = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <FaUser className="icon" />
           </div>
           <div className="input-box">
             <input
@@ -63,15 +63,12 @@ const Loginform = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <RiLockPasswordFill className="icon" />
           </div>
-          <div className="remember-forget">
-            <label><input type="checkbox" />Remember me </label>
-            <a href='#'>Forget password?</a>
-          </div>
+          
           <button type="submit">Login</button>
           <div className="register-link">
-            <p>Don't have an account?<Link to="/Register">Register</Link></p>
+            <p>Don't have an account?  <Link to="/Register">Register</Link></p>
+            <br /><p>or</p><br /><p>Goto <Link to="/">Home</Link></p>
           </div>
         </form>
       </div>
