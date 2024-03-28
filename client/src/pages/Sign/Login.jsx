@@ -45,10 +45,10 @@ const Loginform = () => {
 
   return (
     <div className='bg'>
-      <div className='wrapper'>
+      <div className='wrapperl'>
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
-          <div className="input-box">
+          <div className="input-boxl">
             <input
               type="text"
               placeholder="Username"
@@ -57,7 +57,7 @@ const Loginform = () => {
               required
             />
           </div>
-          <div className="input-box">
+          <div className="input-boxl">
             <input
               type="password"
               placeholder="Password"
@@ -68,9 +68,9 @@ const Loginform = () => {
           </div>
           
           <button type="submit">Login</button>
-          <div className="register-link">
+          <div className="register-linkl">
             <p>Don't have an account?  <Link to="/Register">Register</Link></p>
-            <br /><p>or</p><br /><p>Goto <Link to="/">Home</Link></p>
+            <br /><p>or</p><br /><p>To Goto <Link to="/">Home</Link></p>
           </div>
         </form>
       </div>

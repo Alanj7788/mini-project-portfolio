@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { FaUser } from 'react-icons/fa';
-import { RiLockPasswordFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import axios from 'axios'; // Import axios for making HTTP requests
 import './Register.css';
@@ -11,6 +9,11 @@ import {message} from 'antd'
 function Register(){
   const [email, setEmail] = useState('');
   const [id, setId] = useState('');
+  const [firstName, setfirstName] = useState('');
+  const [lastName, setlastName] = useState('');
+  const [mobile, setMobile] = useState('');
+
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
@@ -22,11 +25,11 @@ function Register(){
 
   axios.post("/api/portfolio/initialsidebar",{ownerid:id,fblink:"Enter:",gitlink:"Enter:",instalink:"Enter:", linkedinlink:"Enter:",maillink:"Enter:"})
    
-  axios.post("/api/portfolio/initialintro",{ownerid:id,welcomeText:"Enter:",firstName:"Enter:",lastName:"Enter:",description:"Enter:",caption:"Enter:"})
+  axios.post("/api/portfolio/initialintro",{ownerid:id,welcomeText:"Enter:",firstName,lastName,description:"Enter:",caption:"Enter:"})
 
   axios.post("/api/portfolio/initialAbout",{ownerid:id,lottieURL:"Enter:",description1:"Enter:",description2:"Enter:",skills:"Enter:"})
 
-  axios.post("/api/portfolio/initialcontact",{name:"Enter",email:"Enter",gender:"Enter",age:"Enter",mobile:"Enter",address:"Enter",ownerid:id})
+  axios.post("/api/portfolio/initialcontact",{name:"Enter",email,gender:"Enter",age:"Enter",mobile,address:"Enter",ownerid:id})
 
     // Add validation logic
     if (password !== confirmPassword) {
@@ -41,6 +44,9 @@ function Register(){
         email,
         id,
         password,
+        firstName,
+        lastName,
+        mobile,
       });
       dispatch(HideLoading())
       if(response.data.success){
@@ -59,7 +65,6 @@ function Register(){
   
 
   return (
-    <div className="imager">
       <div className='wrapper'>
         <form onSubmit={handleRegister}>
           <h1>Register</h1>
@@ -73,7 +78,6 @@ function Register(){
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <FaUser className="icon" />
           </div>
           <div className="input-box">
             <label htmlFor="email">KTU_ID</label>
@@ -85,7 +89,28 @@ function Register(){
               onChange={(e) => setId(e.target.value)}
               required
             />
-            <FaUser className="icon" />
+          </div>
+          <div className="input-box">
+            <label htmlFor="email">First Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setfirstName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <label htmlFor="email">Last Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setlastName(e.target.value)}
+              required
+            />
           </div>
           <div className="input-box">
             <label htmlFor="password">Password</label>
@@ -97,7 +122,6 @@ function Register(){
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <RiLockPasswordFill className="icon" />
           </div>
           <div className="input-box">
             <label htmlFor="confirmPassword">Confirm Password</label>
@@ -109,17 +133,29 @@ function Register(){
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <RiLockPasswordFill className="icon" />
+          </div>
+          
+          <div className="input-box">
+            <label htmlFor="email">Mobile no:</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Mobile"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              required
+            />
           </div>
           <br/>
           <button type="submit" >Register</button>
 
           <div className="register-link">
-            <p>Already have an account? <Link to="/login">Login</Link></p>
+            <p>Already have an account / Add more details? <Link to="/login">Login</Link></p>
+           
+
           </div>
         </form>
       </div>
-    </div>
   );
 };
 

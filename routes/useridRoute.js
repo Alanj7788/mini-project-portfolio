@@ -1,38 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+const router = require('express').Router();
+const { User } = require('../models/userModel'); // Import your User model
 
-function Search() {
-  const [userIds, setUserIds] = useState([]);
+//get user id
+router.get('/get-all-userid', async (req, res) => {
+  let users
+  try {
+     users = await User.find({});
+  }
+   catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+  if(users)
+  {
+    
+      return res.json(users)
+  }
+  else
+  {
+    
+      return res.status(400).json({message:"Failed"})
 
-  useEffect(() => {
-    // Function to fetch all user IDs from the backend
-    const fetchUserIds = async () => {
-      try {
-        // Make a GET request to fetch all user IDs
-        const response = await axios.get('/api/get-all-user-ids');
-        
-        // Update the state with the fetched user IDs
-        setUserIds(response.data);
-      } catch (error) {
-        console.error('Error fetching user IDs:', error);
-      }
-    };
-
-    // Call the fetchUserIds function when the component mounts
-    fetchUserIds();
-  }, []); // Empty dependency array ensures the effect runs only once after the initial render
-
-  return (
-    <div>
-      <h2>User IDs:</h2>
-      <ul>
-        {/* Map through the user IDs and render them as list items */}
-        {userIds.map((userId, index) => (
-          <li key={index}>{userId}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default Search;
+  }
+});
+module.exports = router;

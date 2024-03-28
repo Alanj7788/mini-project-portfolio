@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
 
   // Check if the user already exists
   let existingUser = await User.findOne({ $or: [{ email }, { id }] });
-
+  
   if (existingUser) {
     // User with the given email already exists
     return res.status(200).send({ success: false, message: "User already exists with this email or id" });
@@ -24,6 +24,8 @@ router.post('/register', async (req, res) => {
     try {
       const newUser = await new User({ email, id, password: hashedPassword });
       user = await newUser.save();
+
+      
     }
     catch (err) {
       return res.status(200).send({ success: false, error: "Can't Register" });
@@ -75,7 +77,7 @@ router.post('/login', async (req, res) => {
 //get portfolio data
 router.get('/get-portfolio-data/user/:id', async (req, res) => {
   const id = req.params.id;
-  console.log(id);
+  
   try {
     const intros = await Intro.findOne({ ownerid: id });
     const abouts = await About.findOne({ ownerid: id });
@@ -84,7 +86,7 @@ router.get('/get-portfolio-data/user/:id', async (req, res) => {
     const experiences = await Experience.find({ ownerid: id });
     const sidebars = await Left.findOne({ ownerid: id });
     const academics = await Academic.find({ ownerid: id });
-console.log(sidebars)
+    
     res.status(200).send({
       intro: intros,
       about: abouts,
@@ -93,6 +95,7 @@ console.log(sidebars)
       experiences: experiences,
       left: sidebars,
       academics: academics,
+      
     });
   } catch (error) {
     console.error(error);
@@ -190,7 +193,7 @@ router.post("/initialsidebar", async (req, res) => {
 
 //update sidebar link
 router.post("/update-left/:id", async (req, res) => {
-  const{id}=req.params.id
+  const id=req.params.id
   const {fblink,gitlink,linkedinlink,instalink,maillink} = req.body
   try {
     const left = await Left.findOneAndUpdate(
