@@ -1,35 +1,43 @@
-.card {
-  width: 18rem;
-  border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
-  margin-bottom: 20px;
+.view-users-container {
+  margin: 20px;
 }
 
-.card-img-top {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px);
+.view-users-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.card-body {
-  flex: 1 1 auto;
-  padding: 1.25rem;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.card-title {
-  margin-bottom: 0.75rem;
-  font-size: 1.25rem;
-  font-weight: bold;
+.user-card {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card-text {
-  margin-bottom: 1.25rem;
-  font-size: 1rem;
+.user-card h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.card-link {
-  display: inline-block;
-  margin-right: 10px;
+.user-card p {
+  font-size: 16px;
+  color: #666;
+  margin-top: 0;
+}
+
+.user-card a {
   color: #007bff;
+  text-decoration: none;
+}
+
+.user-card a:hover {
+  text-decoration: underline;
 }

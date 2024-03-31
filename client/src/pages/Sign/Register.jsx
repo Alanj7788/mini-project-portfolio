@@ -14,6 +14,7 @@ function Register(){
   const [mobile, setMobile] = useState('');
 
 
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
@@ -87,6 +88,8 @@ function Register(){
               placeholder="id"
               value={id}
               onChange={(e) => setId(e.target.value)}
+        maxLength={10} // Limit input to 10 characters
+        pattern="[A-Z]{3}\d{2}[A-Z]{2}\d{3}"
               required
             />
           </div>

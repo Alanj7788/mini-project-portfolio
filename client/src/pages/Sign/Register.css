@@ -52,6 +52,10 @@ color: #3a6266;
 font-weight: bold;
 }
 
+.input-box label{
+color: rgb(42, 5, 5);
+}
+
 
 .wrapper button{
   width: 100%;

@@ -28,7 +28,7 @@ const Loginform = () => {
         console.log(response.data.user);
         message.success(response.data.message);
         window.localStorage.setItem("userInfo", JSON.stringify(response.data.user));
-        
+        window.localStorage.setItem("static_value",1);
             
         navigate('/admin');
         window.location.reload();
@@ -51,7 +51,7 @@ const Loginform = () => {
           <div className="input-boxl">
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

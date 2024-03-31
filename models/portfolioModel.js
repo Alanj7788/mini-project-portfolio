@@ -30,10 +30,7 @@ const aboutSchema = new mongoose.Schema({
     ownerid:{
         type:String
     },
-    lottieURL: {
-        type: String,
-        required: true
-    },
+   
     description1: {
         type: String,
         required: true

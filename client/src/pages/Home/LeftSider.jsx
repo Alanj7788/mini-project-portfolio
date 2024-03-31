@@ -5,8 +5,15 @@ function LeftSider() {
 
   const {portfolioData}= useSelector(state=>state.root);
   const {left}=portfolioData;
+
+  if (!left) {
+    return null; // Hide the component if projects data is not available
+  }
+
 const {fblink,instalink,gitlink,linkedinlink,maillink}=left; 
 const mail = `mailto:${maillink || ''}`;
+
+
 
   return (
     <div className="fixed left-0 bottom-0 px-10 sm:static">

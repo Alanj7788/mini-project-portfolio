@@ -5,7 +5,11 @@ import { useSelector } from 'react-redux';
 function About() {
   const {loading,portfolioData}= useSelector(state=>state.root);
   const {about}=portfolioData;
-  const {lottieURL,description1,description2,skills}=about;
+  if (!about) {
+    return null; // Hide the component if projects data is not available
+  }
+  const {description1,description2,skills}=about;
+  
   
   return (
     

@@ -6,7 +6,7 @@ const { User } = require('../models/userModel'); // Import your User model
 // User registration route
 router.post('/register', async (req, res) => {
 
-  const { email, id, password } = req.body;
+  const { email, id, password,firstName,lastName } = req.body;
 
   // Check if the user already exists
   let existingUser = await User.findOne({ $or: [{ email }, { id }] });
@@ -22,7 +22,7 @@ router.post('/register', async (req, res) => {
     // Create a new user
     let user
     try {
-      const newUser = await new User({ email, id, password: hashedPassword });
+      const newUser = await new User({ email, id, password: hashedPassword, firstName,lastName});
       user = await newUser.save();
 
       
@@ -143,9 +143,9 @@ router.post("/update-intro/:id", async (req, res) => {
 
 //Initial about
 router.post("/initialAbout", async (req, res) => {
-  const {ownerid,lottieURL,description1,description2,skills} = req.body
+  const {ownerid,description1,description2,skills} = req.body
   try {
-    const about = new About({ownerid,lottieURL,description1,description2,skills});
+    const about = new About({ownerid,description1,description2,skills});
     await about.save()
     res.status(200).send({ message: "About updated successfully" });
   }
@@ -158,11 +158,11 @@ router.post("/initialAbout", async (req, res) => {
 //update about
 router.post("/update-about/:id", async (req, res) => {
   const id = req.params.id
-  const {lottieURL,description1,description2,skills} = req.body
+  const {description1,description2,skills} = req.body
   console.log(req.body)
   try {
     const about = await About.findOneAndUpdate(
-      { _id: req.body._id },{lottieURL,description1,description2,skills,ownerid:id},
+      { _id: req.body._id },{description1,description2,skills,ownerid:id},
       { new: true }
     );
     res.status(200).send({

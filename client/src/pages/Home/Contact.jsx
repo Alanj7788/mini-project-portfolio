@@ -6,6 +6,10 @@ function Contact() {
     const { portfolioData } = useSelector(state => state.root);
     const { contact } = portfolioData;
 
+    if (!contact || contact.length === 0) {
+        return null; // Hide the component if projects data is not available
+      }
+
     return (
         <div>
             <SectionTitle title="Say Hello" />

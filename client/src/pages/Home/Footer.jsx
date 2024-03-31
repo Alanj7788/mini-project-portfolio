@@ -1,6 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
 function Footer() {
+  const {portfolioData}= useSelector(state=>state.root);
+  const {intro}=portfolioData;
+  
+  if(!intro){
+    return null;
+  }
   return (
     <div className="py-10">
       <div className="h-[1px] w-full bg-gray-700">
