@@ -6,7 +6,7 @@ const { User } = require('../models/userModel'); // Import your User model
 // User registration route
 router.post('/register', async (req, res) => {
 
-  const { email, id, password,firstName,lastName } = req.body;
+  const { email, id, password,firstName,lastName,sem,skills } = req.body;
 
   // Check if the user already exists
   let existingUser = await User.findOne({ $or: [{ email }, { id }] });
@@ -22,7 +22,7 @@ router.post('/register', async (req, res) => {
     // Create a new user
     let user
     try {
-      const newUser = await new User({ email, id, password: hashedPassword, firstName,lastName});
+      const newUser = await new User({ email, id, password: hashedPassword, firstName,lastName,sem,skills});
       user = await newUser.save();
 
       
@@ -147,6 +147,7 @@ router.post("/initialAbout", async (req, res) => {
   try {
     const about = new About({ownerid,description1,description2,skills});
     await about.save()
+    
     res.status(200).send({ message: "About updated successfully" });
   }
   catch (error) {
@@ -159,10 +160,17 @@ router.post("/initialAbout", async (req, res) => {
 router.post("/update-about/:id", async (req, res) => {
   const id = req.params.id
   const {description1,description2,skills} = req.body
-  console.log(req.body)
+  
   try {
     const about = await About.findOneAndUpdate(
       { _id: req.body._id },{description1,description2,skills,ownerid:id},
+      { new: true }
+    );
+    
+    // Update skills in User model
+    const user = await User.findOneAndUpdate(
+      { id: id },
+      { skills },
       { new: true }
     );
     res.status(200).send({

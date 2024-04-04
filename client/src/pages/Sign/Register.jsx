@@ -12,7 +12,7 @@ function Register(){
   const [firstName, setfirstName] = useState('');
   const [lastName, setlastName] = useState('');
   const [mobile, setMobile] = useState('');
-
+  const [sem, setSem] = useState('');
 
 
   const [password, setPassword] = useState('');
@@ -48,6 +48,8 @@ function Register(){
         firstName,
         lastName,
         mobile,
+        sem,
+        skills:"enter",
       });
       dispatch(HideLoading())
       if(response.data.success){
@@ -104,6 +106,7 @@ function Register(){
               required
             />
           </div>
+
           <div className="input-box">
             <label htmlFor="email">Last Name</label>
             <input
@@ -112,6 +115,17 @@ function Register(){
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => setlastName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <label htmlFor="email">Current Semester</label>
+            <input
+              type="text"
+              id="sem"
+              placeholder="Semester"
+              value={sem}
+              onChange={(e) => setSem(e.target.value)}
               required
             />
           </div>
