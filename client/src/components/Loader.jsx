@@ -22,9 +22,9 @@ function Loader() {
         <h1 className="text-secondary k">P</h1>
         <h1 className="text-white s">R</h1>
   <h1 className="text-secondary r">O</h1>*/}
-  <h1 className="text-secondary r">C</h1>
-        <h1 className="text-secondary k">C</h1>
-        <h1 className="text-white s">P</h1>
+  <h1 className="text-secondary r">_</h1>
+        <h1 className="text-secondary k">_</h1>
+        <h1 className="text-white s">_</h1>
         
       </div>
     </div>

@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import AVTR2 from './assets/avatar2.jpg';
 
-import { useNavigate } from 'react-router-dom';
-import './Search.css'
+{/*import { useNavigate } from 'react-router-dom';*/}
+
+
 
 export default function ViewUsers() {
     const [list, setList] = useState([]);
-    const navigate = useNavigate();
+    
+    {/*const navigate = useNavigate();*/}
 
     useEffect(() => {
         axios.get('/api/ids/get-all-userid')
@@ -27,26 +30,98 @@ export default function ViewUsers() {
         
     };
 
+    
+      const [showAll, setShowAll] = useState(false);
+    
+      const toggleShowAll = () => {
+        setShowAll(!showAll);
+      };
+
+
     return (
-  <div className="view-users-container">
-    <h2 className="view-users-title">User Details</h2>
-    <div className="card-container">
-      {list.map(user => (
-        <div className="user-card" key={user.id}>
-          <h3>{user.firstName+" "+user.lastName}</h3>
-          <p>{user.sem+" "}</p>
-          <p>{user.skills+" "}</p>
+
+  <div className="min-h-screen bg-black ">
+    <div className="container text-gray-200 py-3">
+
+      {/*header*/}
+    <div className="flex border-b border-gray-500 pb-2 justify-center items-center">
+      <img
+        src="https://cdn3.iconfinder.com/data/icons/inficons/512/github.png"
+        className="w-24 rounded-full"
+      />
+      <h1 className="text-2xl px-2 first-letter:text-5xl">JYOTHI ENGINEERING COLLEGE</h1>
+    </div>
+
+{/* Search bar */}
+
+<div>
+      <div className="flex justify-center h-11  my-5 items-center">
+        <input
+          placeholder="Search"
           
-          <p>
+          type="text"
+          className="h-full md:w-1/3 outline-none text-gray-800 px-2 
+          font-semibold text-lg w-2/3"
+        />
+        <button
+          className="bg-teal-500 font-semibold  px-4 h-full font-[Poppins]"
+        >
+          Search
+        </button>
+      </div>
+         </div>
+  
+  {/* Users */}
+    <div className="flex gap-5 flex-wrap justify-center  py-5">
+    
+      {list.map(user => (
+        <div className="flex w-[200px] border border-gray-500  
+        bg-gray-900 p-3 flex-col items-center" key={user.id}>
+
+        <img src={AVTR2}
+                className="w-24 mb-4 border-4  border-teal-400 rounded-full"
+              />
+          <h1 className="text-l text-teal-400">{user.firstName+" "+user.lastName}</h1>
+
+          <p className="text-xs text-white">{user.sem+" "}</p>
+          
+          {/*skills */}
+          <div>
+      <p className="text-xs text-white">
+        {showAll ? user.skills.join(", ") : user.skills.slice(0, 3).join(", ")}
+      </p>
+      {user.skills && user.skills.length > 3 && (
+  <>
+    {!showAll ? (
+      <button onClick={toggleShowAll} className="text-xs text-blue-500">
+        View more
+      </button>
+    ) : (
+      <button onClick={toggleShowAll} className="text-xs text-blue-500">
+        View less
+      </button>
+    )}
+  </>
+)}    
+    </div>
+          
+          
            <button onClick={() => handleUserIdClick(user)}>
-              {user.id}</button> 
-            
-            
-          </p>
+           <span
+                  className="text-gray-200 
+                  font-semibold rounded block px-4 py-1 bg-teal-600 my-3 tracking-wide"
+                >
+              View Profile
+            </span>
+            </button> 
+          
         </div>
+        
       ))}
+      </div>
     </div>
   </div>
+  
 );
 
 }
