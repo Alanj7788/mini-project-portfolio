@@ -35,6 +35,13 @@ function Adminintro() {
 
   return (
     <div>
+      <div className="flex justify-end">
+        <button className="bg-primary px-5 py-2 text-white" 
+        onClick={()=>{
+          
+        }}
+        >Add Profile Photo</button>
+      </div>
       <Form onFinish={onFinish} layout='vertical' initialValues={portfolioData.intro}>
         <Form.Item name='welcomeText' label='Welcome Text'>
           <input placeholder="Welcome Text"/>
