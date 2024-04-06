@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import AVTR2 from './assets/avatar2.jpg';
+import AVTR2 from '../FirstPage/assets/avatar2.jpg';
+import { useDispatch } from 'react-redux'
+import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
+import {message} from "antd";
 
-export default function ViewUsers() {
+export default function ManageSearch() {
+    const dispatch=useDispatch();
     const [list, setList] = useState([]);
     const [foods, setFoods] = useState([]);
     const [showAll, setShowAll] = useState(false);
@@ -35,6 +39,26 @@ export default function ViewUsers() {
             (f.skills && f.skills.length > 0 && f.skills.some(skill => skill.toLowerCase().includes(searchTerm)))
         ));
     };
+
+    const onDelete=async (user) => {
+        try {
+          dispatch(ShowLoading());
+          const response= await axios.post("/api/portfolio/delete-user",{
+            _id:user._id,
+          });
+          dispatch(HideLoading());
+          if(response.data.success){
+            message.success(response.data.message);
+            dispatch(HideLoading());
+            dispatch(ReloadData(true));
+          }else {
+            message.error(response.data.message);
+          }
+        }catch(error){
+          dispatch(HideLoading());
+          message.error(error.message);
+        }
+      };
 
     return (
         <div className="min-h-screen bg-black ">
@@ -97,6 +121,12 @@ export default function ViewUsers() {
                                         View Profile
                                     </span>
                                 </button> 
+
+                                <button className="bg-red-500 text-white px-5 py-2 "
+                                onClick={()=>{
+                                 onDelete(user);
+                                    }}
+                                >Delete</button>
                             </div>
                         ))
                     )}

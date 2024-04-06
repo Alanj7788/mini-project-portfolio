@@ -11,7 +11,7 @@ import Login from "./pages/Sign/Login";
 import Register from "./pages/Sign/Register";
 import Search from "./pages/FirstPage/Search";
 import ContactIssue from "./pages/FirstPage/ContactIssue";
-
+import ManageSearch from "./pages/Collegeofficial/ManageSearch";
 
 function App() {
   const {loading,portfolioData, reloadData}= useSelector(state=>state.root);
@@ -61,6 +61,8 @@ const[data,setdata] = useState('')
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/issue" element={<ContactIssue />} />
+    <Route path="/manage" element={<ManageSearch />} />
+    
      </Routes>
      </BrowserRouter>
   );
