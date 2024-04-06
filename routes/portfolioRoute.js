@@ -309,6 +309,59 @@ router.post("/delete-experience", async (req, res) => {
   }
 });
 
+
+// delete a user from User collection
+router.post("/delete-user", async (req, res) => {
+  try {
+    // Find the user in the User collection by its ID and delete it
+    const deletedUser = await User.findOneAndDelete({ _id: req.body._id });
+
+    // If the user is successfully deleted, delete associated data
+    if (deletedUser) {
+      // Delete intro data
+      await Intro.findOneAndDelete({ ownerid: deletedUser.id });
+
+      // Delete about data
+      await About.findOneAndDelete({ ownerid: deletedUser.id });
+
+      // Delete experiences data
+      await Experience.deleteMany({ ownerid: deletedUser.id });
+
+      // Delete sidebar data
+      await Left.findOneAndDelete({ ownerid: deletedUser.id });
+
+      // Delete academic data
+      await Academic.deleteMany({ ownerid: deletedUser.id });
+
+      // Delete project data
+      await Project.deleteMany({ ownerid: deletedUser.id });
+
+      // Delete contact data
+      await Contact.findOneAndDelete({ ownerid: deletedUser.id });
+
+      // Send a success response
+      return res.status(200).send({
+        success: true,
+        message: "User and associated data deleted successfully",
+      });
+    } else {
+      // If the user is not found, send an error response
+      return res.status(404).send({
+        success: false,
+        message: "User not found",
+      });
+    }
+  } catch (error) {
+    // If an error occurs, send a 500 internal server error response
+    console.error(error);
+    return res.status(500).send({ success: false, error: "Internal Server Error" });
+  }
+});
+
+
+
+
+
 //add project
 
 router.post("/add-project/:id", async (req, res) => {

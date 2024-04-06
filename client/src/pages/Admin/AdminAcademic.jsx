@@ -73,6 +73,8 @@ function AdminAcademic() {
       }
     };
 
+    
+
   return (
     <div>
       <div className="flex justify-end">
