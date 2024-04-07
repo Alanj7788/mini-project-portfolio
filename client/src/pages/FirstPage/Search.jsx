@@ -4,7 +4,7 @@ import AVTR2 from './assets/avatar2.jpg';
 
 export default function ViewUsers() {
     const [list, setList] = useState([]);
-    const [foods, setFoods] = useState([]);
+    const [search, setSearch] = useState([]);
     const [showAll, setShowAll] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     
@@ -13,7 +13,7 @@ export default function ViewUsers() {
             .then((result) => {
                 const filteredList = result.data; 
                 setList(filteredList);
-                setFoods(filteredList);
+                setSearch(filteredList);
             })
             .catch((err) => console.log(err));
     }, []);
@@ -30,7 +30,7 @@ export default function ViewUsers() {
     const filter = (e) => {
         const searchTerm = e.target.value.toLowerCase();
         setSearchTerm(searchTerm);
-        setFoods(list.filter(f => 
+        setSearch(list.filter(f => 
             (f.firstName && f.firstName.toLowerCase().includes(searchTerm)) || 
             (f.skills && f.skills.length > 0 && f.skills.some(skill => skill.toLowerCase().includes(searchTerm)))
         ));
@@ -62,10 +62,10 @@ export default function ViewUsers() {
   
                 {/* Users */}
                 <div className="flex gap-5 flex-wrap justify-center  py-5">
-                    {foods.length === 0 ? (
+                    {search.length === 0 ? (
                         <div className="text-white">No items matched your search.</div>
                     ) : (
-                        foods.map(user => (
+                        search.map(user => (
                             <div className="flex w-[200px] border border-gray-500  
                             bg-gray-900 p-3 flex-col items-center" key={user.id}>
                                 <img src={AVTR2} className="w-24 mb-4 border-4  border-teal-400 rounded-full" />

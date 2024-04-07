@@ -12,13 +12,14 @@ import Register from "./pages/Sign/Register";
 import Search from "./pages/FirstPage/Search";
 import ContactIssue from "./pages/FirstPage/ContactIssue";
 import ManageSearch from "./pages/Collegeofficial/ManageSearch";
+import Ideas from "./pages/FirstPage/Ideas";
 
 function App() {
   const {loading,portfolioData, reloadData}= useSelector(state=>state.root);
 const[data,setdata] = useState('')
   const dispatch = useDispatch();
   const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
-
+  const isLoggedIn = localStorage.getItem('static_value');
 
   
 
@@ -55,14 +56,16 @@ const[data,setdata] = useState('')
    {loading ? <Loader /> :null}
    <Routes>
     <Route path="/portfolio" element={<Home />} />
-    <Route path="/admin" element={<Admin />} />
+    {isLoggedIn ? (<Route path="/edit" element={<Admin />} />): 
+      (<Route path="/edit" element={<h1>Please Login</h1>}/>)}
+    
     <Route path="/" element={<Welcome />} />
     <Route path="/search" element={<Search />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/issue" element={<ContactIssue />} />
     <Route path="/manage" element={<ManageSearch />} />
-    
+    <Route path="/ideas" element={<Ideas/>}/>
      </Routes>
      </BrowserRouter>
   );

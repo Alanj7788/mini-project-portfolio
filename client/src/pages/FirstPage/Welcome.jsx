@@ -6,7 +6,7 @@ import Team from './Team'
 
 const Welcome = () => {
   return (
-    <div>Watson
+    <div>
       <Navbar />
       <Collegelist/>
       <br /> <br />

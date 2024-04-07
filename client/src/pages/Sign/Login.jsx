@@ -30,8 +30,9 @@ const Loginform = () => {
         window.localStorage.setItem("userInfo", JSON.stringify(response.data.user));
         window.localStorage.setItem("static_value",1);
             
-        navigate('/admin');
-        window.location.reload();
+        {/*navigate('/edit');
+      window.location.reload();*/}
+      window.location.href='/edit';
 
     }
      else {

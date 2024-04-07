@@ -11,12 +11,12 @@ const Navbar = () => {
   return (
     <div className='bg-fourth text-white'>
 
-akash
 <div className='flex flex-row px-10 gap-10'>
 <Link to='/login' >login</Link>
 <Link to='/' >Home</Link>
 <Link to='/search' >Search</Link>
 <Link to='/manage' >manage_search</Link>
+<Link to='/ideas' >Ideas</Link>
 </div>
 
 {isLoggedIn ? (<Link to='/' className='gap-5' onClick={handleLogout}>Logout</Link>

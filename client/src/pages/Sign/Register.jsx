@@ -79,6 +79,7 @@ function Register(){
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              
               required
             />
           </div>
@@ -91,9 +92,9 @@ function Register(){
               value={id}
               onChange={(e) => setId(e.target.value)}
         maxLength={10} // Limit input to 10 characters
-        pattern="[A-Z]{3}\d{2}[A-Z]{2}\d{3}"
+        pattern="JEC\d{2}[A-Z]{2}\d{3}" 
               required
-            />
+            />{/* "[A-Z]{3}\d{2}[A-Z]{2}\d{3}" */}
           </div>
           <div className="input-box">
             <label htmlFor="email">First Name</label>

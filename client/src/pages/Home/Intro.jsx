@@ -23,7 +23,7 @@ function Intro() {
       <p className="text-white w-2/3 sm:w-full">
       {description || ''}
       </p>
-    <Link to="/admin"><button className="border-2 border-tertiary text-white px-10 py-3 rounded">Get Started</button></Link>
+    <button className="border-2 border-tertiary text-white px-10 py-3 rounded">Get Started</button>
     
     </div>
   )
