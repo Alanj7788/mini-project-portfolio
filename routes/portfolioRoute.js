@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Intro, About, Project, Contact, Experience, Left, Academic } = require('../models/portfolioModel');
 const bcrypt = require('bcrypt');
-const { User } = require('../models/userModel'); // Import your User model
+const { User,Idea } = require('../models/userModel'); // Import your User model
 
 // User registration route
 router.post('/register', async (req, res) => {
@@ -86,7 +86,8 @@ router.get('/get-portfolio-data/user/:id', async (req, res) => {
     const experiences = await Experience.find({ ownerid: id });
     const sidebars = await Left.findOne({ ownerid: id });
     const academics = await Academic.find({ ownerid: id });
-    
+    const ideas = await Idea.find({ownerid:id })
+
     res.status(200).send({
       intro: intros,
       about: abouts,
@@ -95,7 +96,7 @@ router.get('/get-portfolio-data/user/:id', async (req, res) => {
       experiences: experiences,
       left: sidebars,
       academics: academics,
-      
+      ideas: ideas,
     });
   } catch (error) {
     console.error(error);

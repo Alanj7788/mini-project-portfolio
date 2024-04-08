@@ -5,14 +5,18 @@ import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
 import axios from 'axios';
 
 
+
 function AddIdea() {
     const dispatch=useDispatch();
+    const {portfolioData}= useSelector((state)=>state.root);
+    const {ideas} = portfolioData; 
+    
     const [showAddEditModal, setShowAddEditModal ] = React.useState(false);
     const [selectedItemForEdit , setselectedItemForEdit]= React.useState(null);
     const [type ="add" , setType]= React.useState("add");
     
-
     const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+
 
     const onFinish=async(values)=>{
 
@@ -21,12 +25,13 @@ function AddIdea() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/portfolio/update-idea/"+user.id, { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post("/api/idea/update-idea/"+user.id, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/portfolio/add-idea/"+user.id,
+          response=await axios.post("/api/idea/add-idea/"+user.id,
           values);
+          
         }
         
   
@@ -52,7 +57,7 @@ function AddIdea() {
     const onDelete=async (item) => {
       try {
         dispatch(ShowLoading());
-        const response= await axios.post("/api/portfolio/delete-idea",{
+        const response= await axios.post("/api/idea/delete-idea",{
           _id:item._id,
         });
         dispatch(HideLoading());
@@ -70,21 +75,28 @@ function AddIdea() {
       }
     };
 
+    
+
   return (
     <div>
       <div className="flex justify-end">
+       
         <button className="bg-primary px-5 py-2 text-white" 
         onClick={()=>{
           setselectedItemForEdit(null);
           setShowAddEditModal(true);
           setType("add")
         }}
-        >Add Ideas</button>
+        >Add Idea Details</button>
+
+
       </div>
       <div className="grid grid-cols-4 gap-5 mt-5 sm:grid-cols-1">
         {ideas.map((idea)=>(
             <div className="shadow border border-gray-400 p-5 font-semibold flex flex-col">
-                <h1 className="text-primary text-xl font-extrabold">{idea.period}</h1>
+                <h1 className="text-primary text-xl font-extrabold">{idea.ownerid}</h1>
+                
+                <h1>Idea : {idea.idea}</h1>
                 
                 <div className="flex justify-end gap-5 mt-5">
                 <button className="bg-red-500 text-white px-5 py-2 "
@@ -117,7 +129,7 @@ function AddIdea() {
         ) &&  <Modal 
         key={type}
         visible={showAddEditModal}
-      title= {selectedItemForEdit ? "Edit Ideas" : "Add Ideas"}
+      title= {selectedItemForEdit ? "Edit Academic" : "Add Academic"}
       footer={null}
       onCancel={()=>{setShowAddEditModal(false);
       setselectedItemForEdit(null);
@@ -126,10 +138,14 @@ function AddIdea() {
         <Form layout="vertical" onFinish={onFinish}
         initialValues={selectedItemForEdit}
         >
-          <Form.Item name='period' label='Period'>
-            <input placeholder="Period" />
+          
+          
+          <Form.Item name='idea' label='idea'>
+            <input placeholder="Idea" />
           </Form.Item>
           
+        
+
           <div className="flex justify-end">
             <button className="border-primary text-primary px-5 py-2" onClick={()=>{
               setShowAddEditModal(false);

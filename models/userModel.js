@@ -12,13 +12,15 @@ const userSchema = new mongoose.Schema({
 
 
 const ideaSchema= new mongoose.Schema({
-  id:{type:String,required:true,unique:true},
+  ownerid:{type:String},
   firstName:{type: String,required:true},
   lastName:{type:String,required:true},
-
+  idea:{type:String,required:true},
+  date: {type:String,required:true},
+  likes:{type:Array,required:true},
+  dislikes:{type:Array,required:true},
   
-
-})
+});
 
 
 

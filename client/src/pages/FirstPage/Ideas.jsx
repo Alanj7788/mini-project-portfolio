@@ -25,7 +25,7 @@ export default function ViewUsers() {
   };
 
     useEffect(() => {
-        axios.get('/api/ids/get-all-userid')
+        axios.get('/api/idea/get-all-useridea')
             .then((result) => {
                 const filteredList = result.data; 
                 setList(filteredList);
@@ -83,9 +83,9 @@ export default function ViewUsers() {
     <div className='cursor-pointer px-1' onClick={() => handleUserIdClick(user)}>
         <p className="px-1 text-teal-400">{user.firstName + " " + user.lastName}  </p>
     </div>
-    <p className="ml-auto text-sm text-gray-500">{new Date().toLocaleDateString()}</p>
+    <p className="ml-auto text-sm text-gray-500">{user.date}</p>
     
-    <p>oo what a wonderful day it is..really i am blessed for having yu</p>
+    <p>{user.idea}</p>
 
 <div className='flex items-end gap-4 py-2'>
      
@@ -100,7 +100,7 @@ export default function ViewUsers() {
     
     
     
-    <div><GoReply /></div>
+   {/* <div><GoReply /></div>  */}
       </div>
     
                                 

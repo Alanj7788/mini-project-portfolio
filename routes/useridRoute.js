@@ -6,7 +6,7 @@ router.get('/get-all-userid', async (req, res) => {
   let users
   try {
      users = await User.find({});
-     console.log(users)
+     
   }
    catch (error) {
     console.error(error);
