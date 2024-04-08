@@ -3,13 +3,27 @@ import axios from 'axios';
 import { FaRegThumbsUp } from "react-icons/fa";
 import { FaRegThumbsDown } from "react-icons/fa";
 import { GoReply } from "react-icons/go";
+import { FaThumbsUp } from "react-icons/fa";
+import { FaThumbsDown } from "react-icons/fa";
 
 export default function ViewUsers() {
     const [list, setList] = useState([]);
     const [search, setSearch] = useState([]);
     const [showAll, setShowAll] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    
+    const [thumbsUpActive, setThumbsUpActive] = useState(true);
+  const [thumbsDownActive, setThumbsDownActive] = useState(false);
+
+  const handleThumbsUpClick = () => {
+    setThumbsUpActive(!thumbsUpActive);
+    if (thumbsDownActive) setThumbsDownActive(false);
+  };
+
+  const handleThumbsDownClick = () => {
+    setThumbsDownActive(!thumbsDownActive);
+    if (thumbsUpActive) setThumbsUpActive(false);
+  };
+
     useEffect(() => {
         axios.get('/api/ids/get-all-userid')
             .then((result) => {
@@ -73,7 +87,21 @@ export default function ViewUsers() {
     
     <p>oo what a wonderful day it is..really i am blessed for having yu</p>
 
-<div className='flex items-end gap-4 py-2'><div><FaRegThumbsUp /></div> <div><FaRegThumbsDown /></div><div><GoReply /></div>  </div>
+<div className='flex items-end gap-4 py-2'>
+     
+
+      <div onClick={handleThumbsUpClick} style={{ cursor: 'pointer' }}>
+        {thumbsUpActive ? <FaThumbsUp /> : <FaRegThumbsUp />}
+      </div>
+
+      <div onClick={handleThumbsDownClick} style={{ cursor: 'pointer' }}>
+        {thumbsDownActive ? <FaThumbsDown /> : <FaRegThumbsDown />}
+      </div>
+    
+    
+    
+    <div><GoReply /></div>
+      </div>
     
                                 
                         

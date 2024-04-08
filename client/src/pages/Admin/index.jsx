@@ -10,6 +10,7 @@ import AdminExperience from './AdminExperience';
 import AdminProjects from './AdminProjects';
 import AdminAcademic from './AdminAcademic';
 import Navbar from '../../components/Navbar';
+import AddIdea from './AddIdea';
 
 
 const { TabPane }= Tabs;
@@ -42,6 +43,9 @@ function Admin() {
             </TabPane>
             <TabPane tab="Academics" key="7">
                 <AdminAcademic />
+            </TabPane>
+            <TabPane tab="Share Ideas" key="8">
+                <AddIdea />
             </TabPane>
 
         </Tabs>
