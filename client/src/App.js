@@ -64,7 +64,10 @@ const[data,setdata] = useState('')
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/issue" element={<ContactIssue />} />
+
     <Route path="/manage" element={<ManageSearch />} />
+
+    
     <Route path="/ideas" element={<Ideas/>}/>
      </Routes>
      </BrowserRouter>
