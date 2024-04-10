@@ -65,7 +65,9 @@ const[data,setdata] = useState('')
     <Route path="/register" element={<Register />} />
     <Route path="/issue" element={<ContactIssue />} />
 
-    <Route path="/manage" element={<ManageSearch />} />
+    {isLoggedIn ? (<Route path="/manage" element={<ManageSearch />} />): 
+      (<Route path="/manage" element={<h1>Only for admin login</h1>}/>)}
+    
 
     
     <Route path="/ideas" element={<Ideas/>}/>

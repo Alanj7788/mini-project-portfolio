@@ -66,8 +66,11 @@ export default function ViewUsers() {
                         <div className="text-white">No items matched your search.</div>
                     ) : (
                         search.map(user => (
+                            <div>
+                            {user.isadmin === false && (
                             <div className="flex w-[200px] border border-gray-500  
                             bg-gray-900 p-3 flex-col items-center" key={user.id}>
+                                
                                 <img src={AVTR2} className="w-24 mb-4 border-4  border-teal-400 rounded-full" />
                                 <h1 className="text-l text-teal-400">{user.firstName + " " + user.lastName}</h1>
                                 <p className="text-xs text-white">{user.sem + " "}</p>
@@ -98,6 +101,8 @@ export default function ViewUsers() {
                                     </span>
                                 </button> 
                             </div>
+                        )}</div>
+                                
                         ))
                     )}
                 </div>
@@ -105,4 +110,3 @@ export default function ViewUsers() {
         </div>
     );
 }
-

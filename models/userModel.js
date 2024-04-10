@@ -20,8 +20,6 @@ const ideaSchema= new mongoose.Schema({
   idea:{type:String,required:true},
   date: {type:String,required:true},
   likes:{type:Array,required:true},
-  dislikes:{type:Array,required:true},
-  
 });
 
 

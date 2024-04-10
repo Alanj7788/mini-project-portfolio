@@ -83,5 +83,38 @@ router.post("/add-idea/:id", async (req, res) => {
   
 
 
+// Save or remove like for an idea
+router.post("/save-like/:id", async (req, res) => {
+  const { id } = req.params; // Idea ID
+  const { ownerid } = req.body; // Owner ID
+
+  try {
+      // Find the idea by ID
+      const idea = await Idea.findByIdAndUpdate(id);
+      if (!idea) {
+          return res.status(404).json({ message: "Idea not found" });
+      }
+      
+      // Check if the user has already liked the idea
+      const index = idea.likes.indexOf(ownerid);
+      if (index !== -1) {
+          // User has already liked the idea, remove the like
+          idea.likes.splice(index, 1);
+      } else {
+          // User has not liked the idea, add the like
+          idea.likes.push(ownerid);
+      }
+      
+      // Save the updated idea
+      await idea.save();
+      
+      res.status(200).json({ message: "Like updated successfully" });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
 
 module.exports = router;

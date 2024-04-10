@@ -1,28 +1,14 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaRegThumbsUp } from "react-icons/fa";
-import { FaRegThumbsDown } from "react-icons/fa";
-import { GoReply } from "react-icons/go";
-import { FaThumbsUp } from "react-icons/fa";
-import { FaThumbsDown } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 export default function ViewUsers() {
     const [list, setList] = useState([]);
     const [search, setSearch] = useState([]);
-    const [showAll, setShowAll] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    const [thumbsUpActive, setThumbsUpActive] = useState(true);
-  const [thumbsDownActive, setThumbsDownActive] = useState(false);
-
-  const handleThumbsUpClick = () => {
-    setThumbsUpActive(!thumbsUpActive);
-    if (thumbsDownActive) setThumbsDownActive(false);
-  };
-
-  const handleThumbsDownClick = () => {
-    setThumbsDownActive(!thumbsDownActive);
-    if (thumbsUpActive) setThumbsUpActive(false);
-  };
+    const [likes, setLikes] = useState({});
+    const [loggedinuser, setLoggedinUser] = useState(JSON.parse(window.localStorage.getItem("userInfo")) || null);
+    const [likedUsers, setLikedUsers] = useState({}); // Track liked users for each idea
 
     useEffect(() => {
         axios.get('/api/idea/get-all-useridea')
@@ -30,85 +16,121 @@ export default function ViewUsers() {
                 const filteredList = result.data; 
                 setList(filteredList);
                 setSearch(filteredList);
+                initializeLikes(filteredList);
             })
             .catch((err) => console.log(err));
     }, []);
 
-    const handleUserIdClick = (userId) => {
-        window.localStorage.setItem("userInfo", JSON.stringify(userId));
-        window.location.href='/portfolio'; //update redux store and then display page
+    const initializeLikes = (list) => {
+        const initialLikes = {};
+        const initialLikedUsers = {};
+        list.forEach(idea => {
+            // Check if the user previously liked the idea
+            const userLiked = idea.likes.includes(loggedinuser?.id);
+            initialLikes[idea._id] = { thumbsUp: userLiked };
+            initialLikedUsers[idea._id] = false; // Set initial state for showing liked users
+        });
+        setLikes(initialLikes);
+        setLikedUsers(initialLikedUsers);
+    };
+    
+    const handleLikeClick = (ideaId) => {
+        setLikes(prevLikes => ({
+            ...prevLikes,
+            [ideaId]: { thumbsUp: !prevLikes[ideaId].thumbsUp }
+        }));
+        saveLike(ideaId, loggedinuser?.id);
     };
 
-
+    const saveLike = (ideaId, ownerId) => {
+        axios.post(`/api/idea/save-like/${ideaId}`, {
+            ownerid: ownerId
+        })
+        .then((response) => {
+            console.log(response.data); // Handle success
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error saving like:', error); // Handle error
+        });
+    };
+    
     const filter = (e) => {
         const searchTerm = e.target.value.toLowerCase();
         setSearchTerm(searchTerm);
-        setSearch(list.filter(f => 
-            (f.firstName && f.firstName.toLowerCase().includes(searchTerm)) 
-            
+        setSearch(list.filter(idea => 
+            (idea.firstName && idea.firstName.toLowerCase().includes(searchTerm)) 
         ));
+    };
+
+    const handleLogout = () => {
+        // Clear the logged-in user information
+        setLoggedinUser(null);
+        // Clear localStorage
+        window.localStorage.removeItem("userInfo");
+    };
+
+    const toggleLikedUsers = (ideaId) => {
+        setLikedUsers(prevState => ({
+            ...prevState,
+            [ideaId]: !prevState[ideaId]
+        }));
     };
 
     return (
         <div className="min-h-screen bg-black ">
             <div className="container text-gray-200 py-3">
-
-                {/*header*/}
-                <div className="flex border-b border-gray-500 pb-2 justify-center items-center">
-                    
+                {/* Header */}
+                <div className="flex border-b border-gray-500 pb-2 justify-between items-center">
                     <h1 className="text-2xl px-2 first-letter:text-5xl">COMMUNITY SPACE</h1>
+                    {loggedinuser && (
+                        <button onClick={handleLogout}>Logout</button>
+                    )}
                 </div>
 
                 {/* Search bar */}
-                <div className="flex justify-center h-11  my-5 items-center">
+                <div className="flex justify-center h-11 my-5 items-center">
                     <input
                         placeholder="Search"
                         onChange={filter} 
                         type="text"
-                        className="h-full md:w-1/3 outline-none text-gray-800 px-2 
-                        font-semibold text-lg w-2/3"
+                        className="h-full md:w-1/3 outline-none text-gray-800 px-2 font-semibold text-lg w-2/3"
                     />
                 </div>
   
-                {/* Users */}
-                <div className="flex gap-5 flex-wrap justify-center  py-5">
+                {/* Ideas */}
+                <div className="flex gap-5 flex-wrap justify-center py-5">
                     {search.length === 0 ? (
                         <div className="text-white">No items matched your search.</div>
                     ) : (
-                        search.map(user => (
-                            <div className="flex w-[400px] border border-gray-500  
-                            bg-gray-900 p-3 flex-col" key={user.id}>
-                                
-                                
-    <div className='cursor-pointer px-1' onClick={() => handleUserIdClick(user)}>
-        <p className="px-1 text-teal-400">{user.firstName + " " + user.lastName}  </p>
-    </div>
-    <p className="ml-auto text-sm text-gray-500">{user.date}</p>
-    
-    <p>{user.idea}</p>
+                        search.map(idea => (
+                            <div className="flex w-[400px] border border-gray-500 bg-gray-900 p-3 flex-col" key={idea._id}>
+                                <div className='cursor-pointer px-1'>
+                                    <p className="px-1 text-teal-400">{idea.firstName + " " + idea.lastName}</p>
+                                </div>
+                                <p className="ml-auto text-sm text-gray-500">{idea.date}</p>
+                                <p>{idea.idea}</p>
 
-<div className='flex items-end gap-4 py-2'>
-     
+                                <div className='flex items-end gap-4 py-2'>
+                                    <div onClick={loggedinuser ? () => handleLikeClick(idea._id) : null} style={{ cursor: 'pointer' }}>
+                                        {loggedinuser && (likes[idea._id]?.thumbsUp ? <FaHeart /> : <FaRegHeart /> )}
+                                    </div>
+    
+                                    <div onClick={() => toggleLikedUsers(idea._id)} style={{ cursor: 'pointer' }}>
+                                        <p>Likes: {idea.likes.length}</p>
+                                    </div>
 
-      <div onClick={handleThumbsUpClick} style={{ cursor: 'pointer' }}>
-        {thumbsUpActive ? <FaThumbsUp /> : <FaRegThumbsUp />}
-      </div>
-
-      <div onClick={handleThumbsDownClick} style={{ cursor: 'pointer' }}>
-        {thumbsDownActive ? <FaThumbsDown /> : <FaRegThumbsDown />}
-      </div>
-    
-    
-    
-   {/* <div><GoReply /></div>  */}
-      </div>
-    
-                                
-                        
-                                <h3></h3>
-                                
-                                    
-                                       
+                                    {likedUsers[idea._id] && (
+                                        <div>
+                                            <p>Liked Users:</p>
+                                            <ul>
+                                                {idea.likes.map((userId, index) => (
+                                                    <li key={index}>{userId}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         ))
                     )}
@@ -117,4 +139,3 @@ export default function ViewUsers() {
         </div>
     );
 }
-
