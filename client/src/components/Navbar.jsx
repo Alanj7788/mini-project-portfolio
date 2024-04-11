@@ -21,8 +21,9 @@ const Navbar = () => {
         <Link to='/login'>login</Link>
         <Link to='/'>Home</Link>
         <Link to='/search'>Search</Link>
-        {user.isadmin ? (<Link to='/manage'>manage_search</Link>) : null }
-        
+        {user.isadmin ? (<Link to='/managesearch'>manage_search</Link>) : null }
+        {user.isadmin ? (<Link to='/manageidea'>manage_idea</Link>) : null }
+
         <Link to='/ideas'>Ideas</Link>
 
         {isLoggedIn ? (

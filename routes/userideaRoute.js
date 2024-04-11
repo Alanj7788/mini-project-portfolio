@@ -6,7 +6,7 @@ router.get('/get-all-useridea', async (req, res) => {
   let ideas
   try {
      ideas = await Idea.find({});
-     console.log(ideas)
+    
   }
    catch (error) {
     console.error(error);
@@ -114,6 +114,34 @@ router.post("/save-like/:id", async (req, res) => {
       res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+router.post("/delete-aidea", async (req, res) => {
+  try {
+    // Find the idea in the Idea collection by its ID and delete it
+    const deletedIdea = await Idea.findOneAndDelete({ _id: req.body._id });
+
+    // Check if the idea was found and deleted
+    if (deletedIdea) {
+      // Send a success response
+      return res.status(200).send({
+        success: true,
+        message: "Idea deleted successfully",
+      });
+    } else {
+      // If the idea is not found, send an error response
+      return res.status(404).send({
+        success: false,
+        message: "Idea not found",
+      });
+    }
+  } catch (error) {
+    // If an error occurs, send a 500 internal server error response
+    console.error(error);
+    return res.status(500).send({ success: false, error: "Internal Server Error" });
+  }
+});
+
+
 
 
 

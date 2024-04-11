@@ -13,6 +13,7 @@ import Search from "./pages/FirstPage/Search";
 import ContactIssue from "./pages/FirstPage/ContactIssue";
 import ManageSearch from "./pages/Collegeofficial/ManageSearch";
 import Ideas from "./pages/FirstPage/Ideas";
+import ManageIdea from "./pages/Collegeofficial/ManageIdea";
 
 function App() {
   const {loading,portfolioData, reloadData}= useSelector(state=>state.root);
@@ -65,9 +66,10 @@ const[data,setdata] = useState('')
     <Route path="/register" element={<Register />} />
     <Route path="/issue" element={<ContactIssue />} />
 
-    {isLoggedIn ? (<Route path="/manage" element={<ManageSearch />} />): 
-      (<Route path="/manage" element={<h1>Only for admin login</h1>}/>)}
-    
+    {isLoggedIn ? (<Route path="/managesearch" element={<ManageSearch />} />): 
+      (<Route path="/managesearch" element={<h1>Only for admin login</h1>}/>)}
+    {isLoggedIn ? (<Route path="/manageidea" element={<ManageIdea />} />): 
+      (<Route path="/manageidea" element={<h1>Only for admin login</h1>}/>)}
 
     
     <Route path="/ideas" element={<Ideas/>}/>
