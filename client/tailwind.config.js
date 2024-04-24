@@ -18,8 +18,8 @@ module.exports = {
         'brandPrimary':"#4CAF4F",
         'neutralGrey':"#717171",
         'gray900':'#18191F',
-        'navbg':'#1F982FAA',
-        
+        'navbg':'#cbdaf2',
+        'navtext':'#cb89',
         
 
       }

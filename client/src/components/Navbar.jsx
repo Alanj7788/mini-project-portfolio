@@ -46,23 +46,29 @@ const Navbar = () => {
   };
 
   return (
-    <header className='w-full bg-white md:bg-transparent  top-0 left-0 right-0'>
-      <nav className={`py-4 lg:px-14 px-4 ${isSticky ? "sticky top-0 left-0 right-0 border-b bg-white duration-300" :""}`}>
+    <header className='w-full bg-[#cbdaf2]   top-0 left-0 right-0'>
+      <nav className={`py-4 lg:px-14 px-4 ${isSticky ? "sticky top-0 left-0 right-0 border-b bg-[#cbdaf2] duration-300" :""}`}>
 
         {/* */}
         {/*for large devices */}
         <div className="flex justify-between items-center text-base gap-8">
           <a href="" className="text-2xl font-semibold flex items-center space-x-3">
             <img src={logo} alt="" className="w-12 inline-block items-center"/>
-            <span className="text-[#263238]">AYINU</span>
+            <span className="text-[#263238]">CAMPUS CONNECT PRO</span>
           </a>
 
 
 
 
-{/* 
-          <div className='md:flex space-x-12 hidden'>      
+
+          <div className='lg:flex space-x-12 sm:hidden'>
+
+          {!isLoggedIn && (
+        <>      
         <Link to='/login' className="block text-base text-gray900 hover:text-brandPrimary first:font-medium">login</Link>
+        </>
+          )}
+
         <Link to='/' className="block text-base text-gray900 hover:text-brandPrimary first:font-medium">Home</Link>
         <Link to='/search' className="block text-base text-gray900 hover:text-brandPrimary first:font-medium">Search</Link>
         {user.isadmin ? (<Link to='/managesearch' className="block text-base text-gray900 hover:text-brandPrimary first:font-medium">manage_search</Link>) : null }
@@ -78,15 +84,15 @@ const Navbar = () => {
 
       
     </div>
-*/}
+
 
 
        {/* menu button for only mobile devices */}
-<div className="md:hidden">
+<div className="hidden sm:block">
   <button
   onClick={toggleMenu}
-  className="hover:text-[#6bce96] focus:outline-none focus:text-brandPrimary">
-    {isMenuOpen ? (<FaXmark className="h-6 w-6 text-brandPrimary" />) : (<FaBars
+  className="hover:text-[hsl(202,66%,57%)] focus:outline-none focus:text-navtext">
+    {isMenuOpen ? (<FaXmark className="h-6 w-6 text-navtext" />) : (<FaBars
     className="h-6 w-6" />)}
   </button>
 </div>

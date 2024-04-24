@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../../components/Header'
 import Intro from './Intro'
 import About from './About'
 import Experiences from './Experiences'
@@ -17,7 +16,7 @@ function Home() {
 
   return (
       <div>
-     {/* <Header />*/} 
+      
       <Navbar />
       { portfolioData && (
 

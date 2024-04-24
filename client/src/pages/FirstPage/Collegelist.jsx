@@ -1,63 +1,69 @@
-import React, { useState } from 'react';
-import './Collegelist.css'; // Import your CSS file
-import backgroundImage from '././assets/welcome.jpg'; 
+import React from 'react';
+
 import { Link } from 'react-router-dom'
-import {Carousel} from 'flowbite-react';
+import { Carousel } from 'flowbite-react';
 
 const Home = () => {
   return (
     <div className='bg-neutralSilver'>
-<div className='px-4 lg:px-14 max-w-screen-2xl mx-auto min-h-screen h-screen '>
+<div className='px-2 lg:px-14 max-w-screen-2xl mx-auto min-h-screen h-screen '>
 
 <Carousel className='w-full mx-auto'>
-        <div className="my-28 md:my-8 py-12 flex flex-col md:flex-row-reverse items-center justify-between gap-12">
-          
-          
+{/*1 */}
+        <div className="lg:flex-row-reverse my-1 sm:my-2 py-6 flex flex-col  items-center justify-between gap-12">
+                    
           <div>
-            <img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Beautiful-Full-HD-Images.jpg" alt="" />
+            <img src="https://th.bing.com/th/id/OIP.D4xwYs6UMFwamX8plTAnowHaE7?w=1688&h=1125&rs=1&pid=ImgDetMain" alt="" />
 
           </div>
 
         {/*hero txt */}
-          <div className='md:w-1/2'>
-            <h1 className='text-5xl font-semibold mb-4 text-neutralDGrey md:w-3/4 leading-snug'>Hi I creates a portfolio 
-            <span className='text-brandPrimary leading-snug'> for everyone</span> </h1>
-            <p className='text-neutralGrey text-base mb-8'>Where to develop your portfolios</p>
-            <button className='btn-primary'>Register</button>
+          <div className='sm:w-1/2'>
+            <h1 className='text-5xl font-semibold mb-4 text-neutralDGrey sm:w-2/4 leading-snug'>Still not 
+            <span className='text-brandPrimary leading-snug'> Registered ???</span> </h1>
+            <p className='text-neutralGrey text-base mb-8'>Register now and Login to add your profile</p>
+            <Link to="/Register"><button className='btn-primary px-7 py-2 bg-brandPrimary text-white rounded hover:bg-neutralDGrey transition-all 
+  duration-200 hover:-translate-y-1'>Register</button></Link>
+            
+          </div>
+        </div>
+{/*2 */}
+        <div className="lg:flex-row-reverse my-1 sm:my-2 py-6 flex flex-col  items-center justify-between gap-12">
+                    
+          <div>
+            <img src="https://www.cropiqtech.com/sites/default/files/corporate.jpg" alt="" />
+
+          </div>
+
+        {/*hero txt */}
+          <div className='sm:w-1/2'>
+            <h1 className='text-5xl font-semibold mb-4 text-neutralDGrey sm:w-3/4 leading-snug'>Find
+            <span className='text-brandPrimary leading-snug'> Profiles</span> </h1>
+            <p className='text-neutralGrey text-base mb-8'>Search Profiles on the basis of your choice</p>
+            <Link to="/search">
+            <button className='btn-primary px-7 py-2 bg-brandPrimary text-white rounded hover:bg-neutralDGrey transition-all 
+  duration-200 hover:-translate-y-1'>Search</button>
+  </Link>
           </div>
         </div>
 
-        <div className="my-28 md:my-8 py-12 flex flex-col md:flex-row-reverse items-center justify-between gap-12">
-          
-          
+{/*3 */}
+        <div className="lg:flex-row-reverse my-1 sm:my-2 py-6 flex flex-col  items-center justify-between gap-12">
+                    
           <div>
-            <img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Beautiful-Full-HD-Images.jpg" alt="" />
+            <img src="https://www.immigration.ca/wp-content/uploads/2019/02/Intra-Company-Transferees_82110291.jpeg" alt="" />
 
           </div>
 
         {/*hero txt */}
-          <div className='md:w-1/2'>
-            <h1 className='text-5xl font-semibold mb-4 text-neutralDGrey md:w-3/4 leading-snug'>Learn And 
-            <span className='text-brandPrimary leading-snug'> Grow</span> </h1>
-            <p className='text-neutralGrey text-base mb-8'>Where to develop your portfolios</p>
-            <button className='btn-primary'>Register</button>
-          </div>
-        </div>
-
-        <div className="my-28 md:my-8 py-12 flex flex-col md:flex-row-reverse items-center justify-between gap-12">
-          
-          
-          <div>
-            <img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Beautiful-Full-HD-Images.jpg" alt="" />
-
-          </div>
-
-        {/*hero txt */}
-          <div className='md:w-1/2'>
-            <h1 className='text-5xl font-semibold mb-4 text-neutralDGrey md:w-3/4 leading-snug'>Make your own 
-            <span className='text-brandPrimary leading-snug'> Portfolio</span> </h1>
-            <p className='text-neutralGrey text-base mb-8'>Where to develop your portfolios</p>
-            <button className='btn-primary'>Register</button>
+          <div className='sm:w-1/2'>
+            <h1 className='text-5xl font-semibold mb-4 text-neutralDGrey sm:w-3/4 leading-snug'>Community
+            <span className='text-brandPrimary leading-snug'> Space</span> </h1>
+            <p className='text-neutralGrey text-base mb-8'>To share ideas, Please Login</p>
+            <Link to="/ideas">
+            <button className='btn-primary px-7 py-2 bg-brandPrimary text-white rounded hover:bg-neutralDGrey transition-all 
+  duration-200 hover:-translate-y-1'>Ideas</button>
+  </Link>
           </div>
         </div>
 
@@ -71,4 +77,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home  
