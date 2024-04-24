@@ -4,6 +4,7 @@ import ContactIssue from './ContactIssue'
 import Collegelist from './Collegelist'
 import Team from './Team'
 
+
 const Welcome = () => {
   return (
     <div>
