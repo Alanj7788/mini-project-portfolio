@@ -96,7 +96,14 @@ const Navbar = () => {
 
 {/*nav items for mobile */}
 <div className={`space-y-4 px-9 mt-16 py-8 ${isMenuOpen ? "block bg-navbg shadow-lg rounded-lg border border-white mobile-menu fixed top-0 right-5 z-50" : "hidden"}`}>
-  <Link to='/login' className="block text-base text-blue hover:text-white font-medium">Login</Link>
+  {!isLoggedIn && (
+    <>
+      <Link to='/login' className="block text-base text-blue hover:text-white font-medium">Login</Link>
+
+    </>
+
+  )}
+  
   <Link to='/' className="block text-base text-gray-900 hover:text-white  font-medium">Home</Link>
   <Link to='/search' className="block text-base text-gray-900 hover:text-white  font-medium">Search</Link>
   {user.isadmin && (
