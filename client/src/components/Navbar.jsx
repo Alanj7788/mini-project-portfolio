@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './assets/image.png';
 import {FaBars, FaXmark} from 'react-icons/fa6'
+import { motion } from "framer-motion"
 
 const Navbar = () => {
 
@@ -46,22 +47,37 @@ const Navbar = () => {
   };
 
   return (
+
     <header className='w-full bg-[#cbdaf2]   top-0 left-0 right-0'>
       <nav className={`py-4 lg:px-14 px-4 ${isSticky ? "sticky top-0 left-0 right-0 border-b bg-[#cbdaf2] duration-300" :""}`}>
 
         {/* */}
         {/*for large devices */}
         <div className="flex justify-between items-center text-base gap-8">
-          <a href="" className="text-2xl font-semibold flex items-center space-x-3">
+
+        <motion.div className="text-2xl font-semibold space-x-3"
+  initial={{ x: -250 }} 
+  animate={{ x: 0, transition: { duration: 4, loop: Infinity, ease: "linear" } }} >
+
             <img src={logo} alt="" className="w-12 inline-block items-center"/>
-            <span className="text-[#263238]">CAMPUS CONNECT PRO</span>
-          </a>
+
+
+            <span className="text-[#263238]"
+            >CAMPUS CONNECT PRO</span>
+          
+          
+          </motion.div>
 
 
 
 
 
-          <div className='lg:flex space-x-12 sm:hidden'>
+          <motion.div className='lg:flex space-x-12 sm:hidden'
+          
+          whileHover={{scale:.95,originX:0}}
+          transition={{type:'spring', stiffness:100}}
+          
+          >
 
           {!isLoggedIn && (
         <>      
@@ -83,7 +99,7 @@ const Navbar = () => {
         ) : null}
 
       
-    </div>
+    </motion.div>
 
 
 
@@ -101,7 +117,13 @@ const Navbar = () => {
 
 
 {/*nav items for mobile */}
-<div className={`space-y-4 px-9 mt-16 py-8 ${isMenuOpen ? "block bg-navbg shadow-lg rounded-lg border border-white mobile-menu fixed top-0 right-5 z-50" : "hidden"}`}>
+
+<motion.div className={`space-y-4 px-9 mt-16 py-8 ${isMenuOpen ? "block bg-navbg shadow-lg rounded-lg border border-white mobile-menu fixed top-0 right-5 z-50" : "hidden"}`}
+
+whileHover={{scale:.95,originX:0}}
+          transition={{type:'spring', stiffness:100}}
+
+>
   {!isLoggedIn && (
     <>
       <Link to='/login' className="block text-base text-blue hover:text-white font-medium">Login</Link>
@@ -122,7 +144,7 @@ const Navbar = () => {
   {isLoggedIn ? (
     <Link to='/' className="block text-base text-gray-900 hover:text-white  font-medium" onClick={handleLogout}>Logout</Link>
   ) : null}
-</div>
+</motion.div>
 
         </nav>
     </header>

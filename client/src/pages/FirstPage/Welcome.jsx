@@ -8,11 +8,13 @@ import Team from './Team'
 const Welcome = () => {
   return (
     <div>
+    
       <Navbar />
       <Collegelist/>
       <br /> <br />
       <Team/>
       <ContactIssue/>
+    
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AVTR2 from './assets/avatar2.jpg';
+import { motion } from "framer-motion"
 
 export default function ViewUsers() {
     const [list, setList] = useState([]);
@@ -66,7 +67,11 @@ export default function ViewUsers() {
                         <div className="text-white">No items matched your search.</div>
                     ) : (
                         search.map(user => (
-                            <div>
+                            <motion.div 
+                            whileHover={{scale:1.11,originX:0}}
+          transition={{type:'spring', stiffness:100}}
+                            
+                            >
                             {user.isadmin === false && (
                             <div className="flex w-[200px] border border-gray-500  
                             bg-gray-900 p-3 flex-col items-center" key={user.id}>
@@ -101,7 +106,7 @@ export default function ViewUsers() {
                                     </span>
                                 </button> 
                             </div>
-                        )}</div>
+                        )}</motion.div>
                                 
                         ))
                     )}

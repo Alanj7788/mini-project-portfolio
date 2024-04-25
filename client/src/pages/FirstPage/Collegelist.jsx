@@ -2,13 +2,16 @@ import React from 'react';
 
 import { Link } from 'react-router-dom'
 import { Carousel } from 'flowbite-react';
+import { motion } from "framer-motion"
 
 const Home = () => {
   return (
+    <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:1.5, duration:1.5}}>
+
     <div className='bg-neutralSilver'>
 <div className='px-2 lg:px-14 max-w-screen-2xl mx-auto min-h-screen h-screen '>
 
-<Carousel className='w-full mx-auto'>
+<Carousel className='w-full mx-auto bg-transparent'>
 {/*1 */}
         <div className="lg:flex-row-reverse my-1 sm:my-2 py-6 flex flex-col  items-center justify-between gap-12">
                     
@@ -74,6 +77,7 @@ const Home = () => {
 </div>
 
     </div>
+    </motion.div>
   )
 }
 

@@ -14,6 +14,9 @@ import ContactIssue from "./pages/FirstPage/ContactIssue";
 import ManageSearch from "./pages/Collegeofficial/ManageSearch";
 import Ideas from "./pages/FirstPage/Ideas";
 import ManageIdea from "./pages/Collegeofficial/ManageIdea";
+import Navbar from "./components/Navbar";
+
+
 
 function App() {
   const {loading,portfolioData, reloadData}= useSelector(state=>state.root);
@@ -61,8 +64,8 @@ const[data,setdata] = useState('')
       (<Route path="/edit" element={<h1>Please Login</h1>}/>)}
     
     <Route path="/" element={<Welcome />} />
-    <Route path="/search" element={<Search />} />
-    <Route path="/login" element={<Login />} />
+    <Route path="/search" element={<div><Navbar/><Search /></div>} />
+    <Route path="/login" element={ <Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/issue" element={<ContactIssue />} />
 

@@ -5,7 +5,7 @@ import './Register.css';
 import { useDispatch} from 'react-redux';
 import { HideLoading, ShowLoading } from "../../redux/rootSlice";
 import {message} from 'antd'
-
+import { motion } from "framer-motion";
 function Register(){
   const [email, setEmail] = useState('');
   const [id, setId] = useState('');
@@ -68,7 +68,7 @@ function Register(){
   
 
   return (
-      <div className='wrapper'>
+      <motion.div className='wrapper' drag >
         <form onSubmit={handleRegister}>
           <h1>Register</h1>
           <div className="input-box">
@@ -173,7 +173,7 @@ function Register(){
 
           </div>
         </form>
-      </div>
+      </motion.div>
   );
 };
 
