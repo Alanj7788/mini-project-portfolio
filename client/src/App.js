@@ -67,15 +67,15 @@ const[data,setdata] = useState('')
     <Route path="/search" element={<div><Navbar/><Search /></div>} />
     <Route path="/login" element={ <Login />} />
     <Route path="/register" element={<Register />} />
-    <Route path="/issue" element={<ContactIssue />} />
+    <Route path="/issue" element={<div><Navbar/><ContactIssue /></div>} />
 
-    {isLoggedIn ? (<Route path="/managesearch" element={<ManageSearch />} />): 
+    {isLoggedIn ? (<Route path="/managesearch" element={<div><Navbar/><ManageSearch /></div>} />): 
       (<Route path="/managesearch" element={<h1>Only for admin login</h1>}/>)}
-    {isLoggedIn ? (<Route path="/manageidea" element={<ManageIdea />} />): 
+    {isLoggedIn ? (<Route path="/manageidea" element={<div><Navbar/><ManageIdea /></div>} />): 
       (<Route path="/manageidea" element={<h1>Only for admin login</h1>}/>)}
 
     
-    <Route path="/ideas" element={<Ideas/>}/>
+    <Route path="/ideas" element={<div><Navbar/><Ideas/></div>}/>
      </Routes>
      </BrowserRouter>
   );

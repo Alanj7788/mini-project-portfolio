@@ -2,11 +2,14 @@ const router = require('express').Router();
 const { Intro, About, Project, Contact, Experience, Left, Academic } = require('../models/portfolioModel');
 const bcrypt = require('bcrypt');
 const { User,Idea } = require('../models/userModel'); // Import your User model
+const multer= require('multer')
+const path = require('path')
+
 
 // User registration route
 router.post('/register', async (req, res) => {
 
-  const { email, id, password,firstName,lastName,sem,skills } = req.body;
+  const { email, id, password,firstName,lastName,sem,skills,image } = req.body;
 
   // Check if the user already exists
   let existingUser = await User.findOne({ $or: [{ email }, { id }] });
@@ -22,7 +25,7 @@ router.post('/register', async (req, res) => {
     // Create a new user
     let user
     try {
-      const newUser = await new User({ email, id, password: hashedPassword, firstName,lastName,sem,skills});
+      const newUser = await new User({ email, id, password: hashedPassword, firstName,lastName,sem,skills,image});
       user = await newUser.save();
 
       
@@ -107,9 +110,9 @@ router.get('/get-portfolio-data/user/:id', async (req, res) => {
 
 //Initial intro
 router.post("/initialintro", async (req, res) => {
-  const {ownerid,welcomeText,firstName,lastName,description,caption} = req.body
+  const {ownerid,welcomeText,firstName,lastName,description,caption,image} = req.body
   try {
-    const intro = new Intro({ownerid,welcomeText,firstName,lastName,description,caption});
+    const intro = new Intro({ownerid,welcomeText,firstName,lastName,description,caption,image});
     await intro.save()
     res.status(200).send({ message: "intro updated successfully" });
   }
@@ -139,6 +142,47 @@ router.post("/update-intro/:id", async (req, res) => {
   }
 });
 
+//file upload
+const storage= multer.diskStorage({
+  destination: (req,file,cb)=> {
+    cb(null,'users/images')
+  },
+  filename:(req,file,cb)=>{
+    cb(null,file.fieldname + "_"+Date.now()+ path.extname(file.originalname))
+  }
+})
+
+const upload=multer({
+  storage:storage
+})
+
+router.post('/upload/:id', upload.single('file'), async (req, res) => {
+    
+    const id = req.params.id;
+    const image = req.file.filename;
+    
+  try{
+    const userimage = await Intro.findOneAndUpdate(
+      { ownerid:id },
+      {image},
+      { new: true }
+    );
+    // Update image in User model
+    const user = await User.findOneAndUpdate(
+      { id: id },
+      { image },
+      { new: true }
+    );
+    res.status(200).send({
+      data: userimage,
+      success: true,
+      message: "Profile Photo updated successfully"
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+});
 
 
 

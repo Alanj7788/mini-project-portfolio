@@ -26,7 +26,7 @@ function Register(){
 
   axios.post("/api/portfolio/initialsidebar",{ownerid:id,fblink:"Enter:",gitlink:"Enter:",instalink:"Enter:", linkedinlink:"Enter:",maillink:"Enter:"})
    
-  axios.post("/api/portfolio/initialintro",{ownerid:id,welcomeText:"Enter:",firstName,lastName,description:"Enter:",caption:"Enter:"})
+  axios.post("/api/portfolio/initialintro",{ownerid:id,welcomeText:"Enter:",firstName,lastName,description:"Enter:",caption:"Enter:",image:"Enter"})
 
   axios.post("/api/portfolio/initialAbout",{ownerid:id,lottieURL:"Enter:",description1:"Enter:",description2:"Enter:",skills:"Enter:"})
 
@@ -50,6 +50,7 @@ function Register(){
         mobile,
         sem,
         skills:"enter",
+        image:"enter",
       });
       dispatch(HideLoading())
       if(response.data.success){
@@ -169,9 +170,12 @@ function Register(){
 
           <div className="register-link">
             <p>Already have an account / Add more details? <Link to="/login">Login</Link></p>
-           
+           </div>
 
-          </div>
+           <div className="register-link">
+            <p>Click to go to <Link to="/">Home</Link></p>
+           </div>
+
         </form>
       </motion.div>
   );

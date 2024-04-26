@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-
+import { FaLocationDot } from "react-icons/fa6";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { MdLocalPhone } from "react-icons/md";
 export default function ContactIssue() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -45,45 +47,25 @@ export default function ContactIssue() {
           <div className="flex flex-col space-y-8 justify between">
             <div>
               <h1 className="font-bold text-4xl tracking-wide">Contact us</h1>
-              <p className="pt-2 text-cyan-100 text-sm">ahgssgshjjshss</p>
             </div>
             <div className="flex flex-col space-y-6">
               <div className="inline-flex space-x-2 items-center">
-                <ion-icon
-                  name="call"
-                  className="text-green-300 text-xl"
-                ></ion-icon>
-                <span>998877497566</span>
+              <MdLocalPhone />
+
+                <span>9947234893</span>
               </div>
               <div className="inline-flex space-x-2 items-center">
-                <ion-icon
-                  name="mail"
-                  className="text-green-300 text-xl"
-                ></ion-icon>
+              <MdOutlineMailOutline />
+
                 <span>akashjoju969@gmail.com</span>
               </div>
               <div className="inline-flex space-x-2 items-center">
-                <ion-icon
-                  name="location"
-                  className="text-green-300 text-xl"
-                ></ion-icon>
-                <span>thrissur</span>
+              <FaLocationDot />
+
+                <span>Thrissur</span>
               </div>
             </div>
-            <div className="flex space-x-4 text-lg">
-              <a href="#">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
-              <a href="#">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-              <a href="#">
-                <ion-icon name="logo-linkedin"></ion-icon>
-              </a>
-              <a href="#">
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
-            </div>
+            
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-8 text-gray-600 md:w-80">

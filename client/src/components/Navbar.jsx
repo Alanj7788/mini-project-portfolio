@@ -57,7 +57,7 @@ const Navbar = () => {
 
         <motion.div className="text-2xl font-semibold space-x-3"
   initial={{ x: -250 }} 
-  animate={{ x: 0, transition: { duration: 4, loop: Infinity, ease: "linear" } }} >
+  animate={{ x: 0, transition: { duration: 6, loop: Infinity, ease: "linear" } }} >
 
             <img src={logo} alt="" className="w-12 inline-block items-center"/>
 

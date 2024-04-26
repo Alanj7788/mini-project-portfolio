@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Form, message} from 'antd'
 import { useDispatch, useSelector } from 'react-redux';
 import { HideLoading, ShowLoading } from "../../redux/rootSlice";
@@ -33,14 +33,35 @@ function Adminintro() {
     }
   }
 
+  const [file,setFile]=useState()
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      dispatch(ShowLoading());
+      const response = await axios.post("/api/portfolio/upload/" + user.id ,formData);
+      console.log(formData);
+      dispatch(HideLoading());
+      if (response.data.success) {
+        message.success(response.data.message);
+      } else {
+        message.error(response.data.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
+
   return (
     <div>
       <div className="flex justify-end">
+        <input type="file" onChange={e=> setFile(e.target.files[0])} />
         <button className="bg-primary px-5 py-2 text-white" 
-        onClick={()=>{
-          
-        }}
-        >Add Profile Photo</button>
+        onClick={handleUpload}
+        >Upload </button>
       </div>
       <Form onFinish={onFinish} layout='vertical' initialValues={portfolioData.intro}>
         <Form.Item name='welcomeText' label='Welcome Text'>
