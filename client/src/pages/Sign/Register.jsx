@@ -24,13 +24,13 @@ function Register(){
 
     event.preventDefault();
 
-  axios.post("/api/portfolio/initialsidebar",{ownerid:id,fblink:"Enter:",gitlink:"Enter:",instalink:"Enter:", linkedinlink:"Enter:",maillink:"Enter:"})
+  axios.post("/api/portfolio/initialsidebar",{ownerid:id,fblink:" ",gitlink:" ",instalink:" ", linkedinlink:" ",maillink:" "})
    
-  axios.post("/api/portfolio/initialintro",{ownerid:id,welcomeText:"Enter:",firstName,lastName,description:"Enter:",caption:"Enter:",image:"Enter"})
+  axios.post("/api/portfolio/initialintro",{ownerid:id,welcomeText:" ",firstName,lastName,description:" ",caption:" ",image:" "})
 
-  axios.post("/api/portfolio/initialAbout",{ownerid:id,lottieURL:"Enter:",description1:"Enter:",description2:"Enter:",skills:"Enter:"})
+  axios.post("/api/portfolio/initialAbout",{ownerid:id,lottieURL:" ",description1:" ",description2:" ",skills:" "})
 
-  axios.post("/api/portfolio/initialcontact",{name:"Enter",email,gender:"Enter",age:"Enter",mobile,address:"Enter",ownerid:id})
+  axios.post("/api/portfolio/initialcontact",{name:" ",email,gender:" ",age:" ",mobile,address:" ",ownerid:id})
 
     // Add validation logic
     if (password !== confirmPassword) {
@@ -49,8 +49,8 @@ function Register(){
         lastName,
         mobile,
         sem,
-        skills:"enter",
-        image:"enter",
+        skills:" ",
+        image:" ",
       });
       dispatch(HideLoading())
       if(response.data.success){

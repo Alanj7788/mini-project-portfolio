@@ -18,11 +18,14 @@ function Contact() {
                     <p className="text-white">{'{'}</p>
 
                     {Object.keys(contact).map((key) => (
-                        <p className="ml-5 ">
-                            <span className="text-[#a8dfe0] ">{key}:</span> {" "}
-                            <span className="text-[#a8dfe0]">{contact[key]}</span>,
-                        </p>
-                    ))}
+    key !== '_id' && key !== '__v' && (
+        <p className="ml-5">
+            <span className="text-[#a8dfe0]">{key}:</span>{" "}
+            <span className="text-[#a8dfe0]">{contact[key]}</span>,
+        </p>
+    )
+))}
+
 
                     <p className="text-white ">{'}'}</p>
                 </div>

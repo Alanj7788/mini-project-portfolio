@@ -66,9 +66,9 @@ export default function ManageSearch() {
 
         return (
             <div className="flex w-[200px] border border-gray-500 bg-gray-900 p-3 flex-col items-center" key={user.id}>
-                <img src={AVTR2} className="w-24 mb-4 border-4 border-teal-400 rounded-full" />
+                <img src={`images/${user.image}`} className="w-24 mb-4 border-4 border-teal-400 rounded-full" />
                 <h1 className="text-l text-teal-400">{user.firstName + " " + user.lastName}</h1>
-                <p className="text-xs text-white">{user.sem + " "}</p>
+                <p className="text-xs text-white">sem::{user.sem + " "}</p>
                 <a href={mail || ''}>
                     <i className="ri-mail-line"></i>
                 </a>

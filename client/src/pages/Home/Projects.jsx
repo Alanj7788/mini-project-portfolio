@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 
 function Projects() {
 
+
+  
   const {portfolioData}= useSelector(state=>state.root);
   const {projects}=portfolioData;
     const [selectedItemIndex, setSelectedItemIndex]=React.useState(0);
@@ -35,9 +37,13 @@ function Projects() {
 </div>
 
 <div className="flex items-center justify-center gap-10 sm:flex-col">
+
+
     <img src={projects[selectedItemIndex].image} alt="" className="h-60 w-72" />
+    
     <div className="flex flex-col gap-5 ">
     <h1 className="text-secondary text-xl ">{projects[selectedItemIndex].description}</h1>
+    <h1 className="text-secondary text-xl ">{projects[selectedItemIndex].technolgies}</h1>
     <a href={projects[selectedItemIndex].link} class="text-[#ade2c1] text-xl">Deployed Link</a>
     
     </div>

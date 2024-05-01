@@ -16,7 +16,8 @@ const Home = () => {
         <div className="lg:flex-row-reverse my-1 sm:my-2 py-6 flex flex-col  items-center justify-between gap-12">
                     
           <div>
-            <img src="https://th.bing.com/th/id/OIP.D4xwYs6UMFwamX8plTAnowHaE7?w=1688&h=1125&rs=1&pid=ImgDetMain" alt="" />
+          <lottie-player src="https://lottie.host/219c0a00-4ea9-4c4a-90d0-3664a93ff2d8/4rbrXvqTpx.json" background="##fff" loop="4" speed="1"  autoplay direction="1" mode="normal"></lottie-player >
+          
 
           </div>
 
@@ -34,7 +35,7 @@ const Home = () => {
         <div className="lg:flex-row-reverse my-1 sm:my-2 py-6 flex flex-col  items-center justify-between gap-12">
                     
           <div>
-            <img src="https://www.cropiqtech.com/sites/default/files/corporate.jpg" alt="" />
+          <lottie-player src="https://lottie.host/19168d10-5785-4ca6-b1a5-e438b51a74a2/mlauqMasuS.json" background="##fff" loop="4" speed="1"  autoplay direction="1" mode="normal"></lottie-player >
 
           </div>
 
@@ -53,8 +54,8 @@ const Home = () => {
 {/*3 */}
         <div className="lg:flex-row-reverse my-1 sm:my-2 py-6 flex flex-col  items-center justify-between gap-12">
                     
-          <div>
-            <img src="https://www.immigration.ca/wp-content/uploads/2019/02/Intra-Company-Transferees_82110291.jpeg" alt="" />
+          <div >
+          <lottie-player src="https://lottie.host/3260ce2e-c8d0-45fd-89ee-85decc841587/QeYLOrH9Iw.json"background="##fff" loop="4" speed="1"  autoplay direction="1" mode="normal"></lottie-player >
 
           </div>
 
@@ -62,7 +63,15 @@ const Home = () => {
           <div className='sm:w-1/2'>
             <h1 className='text-5xl font-semibold mb-4 text-neutralDGrey sm:w-3/4 leading-snug'>Community
             <span className='text-brandPrimary leading-snug'> Space</span> </h1>
-            <p className='text-neutralGrey text-base mb-8'>To share ideas, Please Login</p>
+            
+            <p className='text-neutralGrey text-base mb-8'>To share ideas among friends, Please Login</p>
+            <Link to="/login">
+            <button className='btn-primary px-7 py-2 bg-brandPrimary text-white rounded hover:bg-neutralDGrey transition-all 
+  duration-200 hover:-translate-y-1'>Login</button>
+  </Link>
+<br /> <br /> <br />
+            <p className='text-neutralGrey text-base mb-8'>To view ideas , Please click</p>
+
             <Link to="/ideas">
             <button className='btn-primary px-7 py-2 bg-brandPrimary text-white rounded hover:bg-neutralDGrey transition-all 
   duration-200 hover:-translate-y-1'>Ideas</button>

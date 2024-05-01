@@ -19,8 +19,8 @@ console.log(user.id)
     const onFinish=async(values)=>{
 
       try{
-        const tempTechnologies=values?.technologies?.split(",") || [];
-        values.technologies=tempTechnologies;
+        const tempTechnologies=values?.technolgies?.split(",") || [];
+        values.technolgies=tempTechnologies;
         dispatch(ShowLoading())
         let response;
         if(selectedItemForEdit)
@@ -134,7 +134,7 @@ console.log(user.id)
         layout="vertical" onFinish={onFinish}
         initialValues={{
         ...selectedItemForEdit,
-        technologies : selectedItemForEdit?.technologies?.join(","),} || {} }
+        technolgies : selectedItemForEdit?.technolgies?.join(","),} || {} }
         >
           <Form.Item name='title' label='Title'>
             <input placeholder="Title" />
@@ -147,8 +147,8 @@ console.log(user.id)
             <textarea placeholder="Description" />
           </Form.Item>
 
-          <Form.Item name='temptechnologies' label='Technologies'>
-            <input placeholder="Technologies" />
+          <Form.Item name='technolgies' label='Technolgies'>
+            <input placeholder="Technolgies" />
           </Form.Item>
 
           <Form.Item name='link' label='Project Deployed Link'>

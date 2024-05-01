@@ -4,61 +4,91 @@ import AVTR1 from './assets/avatar1.jpg';
 import AVTR2 from './assets/avatar2.jpg';
 import AVTR3 from './assets/avatar3.jpg';
 import AVTR4 from './assets/avatar4.jpg';
+import { CiLinkedin } from "react-icons/ci";
 
-// Import Swiper core and required modules
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css'; // Import Swiper styles
+import { FaGithub } from "react-icons/fa";
+
+import { CiMail } from "react-icons/ci";
 
 const data = [
   {
-    avatar: AVTR2,
-    name: 'Akash Joju',
-    review: '"Working with Alan has been a game-changer for my projects. He brings a perfect blend of creativity and technical expertise to the table."',
+    id: 1,
+    image: AVTR2,
+    title: "AKASH JOJU",
+    github: "https://github.com",
+    linkedin: "iuhfvnigjnfsiurtjnfvdjk",
+    mail:"vjnlvkm",
   },
   {
-    avatar: AVTR4,
-    name: 'Alan Jose',
-    review: '"Alan is not just a coder; he is a problem solver. His dedication to delivering high-quality, efficient solutions in both front-end and back-end development is truly impressive."',
+     id: 2,
+    image: AVTR1,
+    title: "ANNROSE WATSON",
+    github: "https://github.com",
+    linkedin: "iuhfvnigjnfsiurtjnfvdjk",
+    mail:"vjnlvkm",
   },
   {
-    avatar: AVTR1,
-    name: 'Annrose Watson',
-    review: '"I ve collaborated with Alan on various web projects, and I m always amazed by his ability to turn complex ideas into seamless, user-friendly applications. A true full-stack magician!"',
+     id: 3,
+    image: AVTR3,
+    title: "GEETHIKA S",
+    github: "https://github.com",
+    linkedin: "iuhfvnigjnfsiurtjnfvdjk",
+    mail:"vjnlvkm",
   },
   {
-    avatar: AVTR3,
-    name: 'Geethika',
-    review: '"As a friend and content creator, I can vouch for his commitment to excellence. His proficiency in both front-end and back-end technologies makes him a go-to person for any tech challenge."',
+     id: 4,
+    image: AVTR4,
+    title: "ALAN JOSE",
+    github: "https://github.com",
+    linkedin: "iuhfvnigjnfsiurtjnfvdjk",
+    mail:"vjnlvkm",
   },
-];
+  
+]
+
 
 const Team = () => {
   return (
-    <div>
-      <div className="text-center">
-        <h1 className='items-center justify-between'>Developers</h1>
-        <h2>Team</h2>
-        <br />
-      </div>
+    <section id='portfolio'>
+      <div class="team-heading-container">
+        <br /> <br />
+    <h5 >Developers</h5>
+    <h2>Team</h2>
+    <br /> <br />
+</div>
 
-      <Swiper
-        className="container testimonials_container"
-        spaceBetween={40}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-      >
-        {data.map(({ avatar, name, review }, index) => (
-          <SwiperSlide key={index} className="testimonial">
-            <div className="client_avatar">
-              <img src={avatar} alt={`Avatar of ${name}`} />
-            </div>
-            <h5 className="client_name">{name}</h5>
-            <small className="client_review">{review}</small>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
-  );
-};
+      <div className="container portfolio_container">
+       {
+        data.map(({id,image,title,github,linkedin,mail}) => {
+          return (
+            <article className='portfolio_item'>
+          <div className="portfolio_item-image">
+            <img src={image}  alt={title} />
+          </div>
+          <h3 className='team-heading-container'>{title}</h3>
+          <br />
+          <div className="portfolio_item-cta ">
+          <a href={github} className='btn ' target='_blank'><FaGithub /></a>
+          <a href={linkedin} className='btn btn-primary' target='_blank'><CiLinkedin /></a>
+          <a href={mail} className='btn btn-primary' target='_blank'><CiMail /></a>
+
+          </div>        
+        </article>
+          )
+        })
+      }
+      </div> 
+        <br /> <br /> <br /> <br />
+        
+             
+        
+             
+       
+
+       
+        
+    </section>
+  )
+}
 
 export default Team;

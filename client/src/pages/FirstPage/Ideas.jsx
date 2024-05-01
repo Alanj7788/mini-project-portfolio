@@ -63,12 +63,7 @@ export default function ViewUsers() {
         ));
     };
 
-    const handleLogout = () => {
-        // Clear the logged-in user information
-        setLoggedinUser(null);
-        // Clear localStorage
-        window.localStorage.removeItem("userInfo");
-    };
+    
 
     const toggleLikedUsers = (ideaId) => {
         setLikedUsers(prevState => ({
@@ -83,9 +78,7 @@ export default function ViewUsers() {
                 {/* Header */}
                 <div className="flex border-b border-gray-500 pb-2 justify-between items-center">
                     <h1 className="text-2xl px-2 first-letter:text-5xl">COMMUNITY SPACE</h1>
-                    {loggedinuser && (
-                        <button onClick={handleLogout}>Logout</button>
-                    )}
+                    
                 </div>
 
                 {/* Search bar */}
@@ -126,6 +119,7 @@ export default function ViewUsers() {
                                             <ul>
                                                 {idea.likes.map((userId, index) => (
                                                     <li key={index}>{userId}</li>
+                                                    
                                                 ))}
                                             </ul>
                                         </div>

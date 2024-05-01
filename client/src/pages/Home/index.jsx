@@ -9,6 +9,7 @@ import LeftSider from './LeftSider'
 import { useSelector } from 'react-redux'
 import AcademicDetails from './AcademicDetails'
 import Navbar from '../../components/Navbar'
+import Pic from './Pic'
 
 
 function Home() {
@@ -21,6 +22,7 @@ function Home() {
       { portfolioData && (
 
       <div className="bg-primary px-40 sm:px-5">
+        <Pic />
       <Intro />
       <About />
       <AcademicDetails />
