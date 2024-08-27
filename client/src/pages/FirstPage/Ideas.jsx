@@ -9,7 +9,7 @@ export default function ViewUsers() {
     const [likes, setLikes] = useState({});
     const [loggedinuser, setLoggedinUser] = useState(JSON.parse(window.localStorage.getItem("userInfo")) || null);
     const [likedUsers, setLikedUsers] = useState({}); // Track liked users for each idea
-
+    
     useEffect(() => {
         axios.get('/api/idea/get-all-useridea')
             .then((result) => {

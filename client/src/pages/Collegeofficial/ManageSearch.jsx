@@ -21,11 +21,11 @@ export default function ManageSearch() {
             })
             .catch((err) => console.log(err));
     }, []);
-
+{/* 
     const handleUserIdClick = (userId) => {
         window.localStorage.setItem("userInfo", JSON.stringify(userId));
         window.location.href = '/portfolio'; //update redux store and then display page
-    };
+    }; */}
 
     const toggleShowAll = () => {
         setShowAll(!showAll);
@@ -67,11 +67,11 @@ export default function ManageSearch() {
         return (
             <div className="flex w-[200px] border border-gray-500 bg-gray-900 p-3 flex-col items-center" key={user.id}>
                 <img src={`images/${user.image}`} className="w-24 mb-4 border-4 border-teal-400 rounded-full" />
-                <h1 className="text-l text-teal-400">{user.firstName + " " + user.lastName}</h1>
+                <h1 className="text-l text-teal-400">{user.firstName + " " + user.lastName}</h1> 
                 <p className="text-xs text-white">sem::{user.sem + " "}</p>
                 <a href={mail || ''}>
                     <i className="ri-mail-line"></i>
-                </a>
+                </a> 
                 {/* Skills */}
                 <div>
                     <p className="text-xs text-white">
@@ -92,12 +92,12 @@ export default function ManageSearch() {
                     )}
                 </div>
 
-                <button onClick={() => handleUserIdClick(user)}>
+            {/*  <button onClick={() => handleUserIdClick(user)}>
                     <span className="text-gray-200 font-semibold rounded block px-4 py-1 bg-teal-600 my-3 tracking-wide">
                         View Profile
                     </span>
-                </button>
-
+                </button>  */}  
+<br />
                 <button className="bg-red-500 text-white px-5 py-2 "
                     onClick={() => {
                         onDelete(user);
