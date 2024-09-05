@@ -1,4 +1,5 @@
 import { BrowserRouter,Routes,Route} from "react-router-dom";
+const apiUrl = process.env.REACT_APP_API_URL;
 import Home from './pages/Home';
 import { useEffect,useState } from "react";
 import Loader from "./components/Loader";
@@ -31,7 +32,7 @@ const[data,setdata] = useState('')
     try{
       dispatch(ShowLoading());
       console.log(user.id)
-      const response= await axios.get('./api/portfolio/get-portfolio-data/user/'+user.id);
+      const response= await axios.get('${apiUrl}/api/portfolio/get-portfolio-data/user/'+user.id);
       setdata(response.data)
       
       dispatch(setPortfolioData(response.data));
