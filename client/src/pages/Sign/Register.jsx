@@ -7,6 +7,10 @@ import { HideLoading, ShowLoading } from "../../redux/rootSlice";
 import {message} from 'antd'
 import { motion } from "framer-motion";
 function Register(){
+
+
+const apiUrl = process.env.REACT_APP_API_URL;
+
   const [email, setEmail] = useState('');
   const [id, setId] = useState('');
   const [firstName, setfirstName] = useState('');
