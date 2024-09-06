@@ -1,4 +1,5 @@
 import React from 'react'
+const apiUrl = process.env.REACT_APP_API_URL;
 import { useSelector, useDispatch } from 'react-redux'
 import {Form, Modal, message} from "antd";
 import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
