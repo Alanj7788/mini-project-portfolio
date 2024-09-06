@@ -3,6 +3,10 @@ import axios from 'axios';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 export default function ViewUsers() {
+
+
+
+const apiUrl = process.env.REACT_APP_API_URL;
     const [list, setList] = useState([]);
     const [search, setSearch] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
