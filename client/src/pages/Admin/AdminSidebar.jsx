@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HideLoading, ShowLoading } from "../../redux/rootSlice";
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_URL;
 
 function AdminSidebar() {
 
