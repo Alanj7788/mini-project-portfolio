@@ -1,5 +1,4 @@
 import { BrowserRouter,Routes,Route} from "react-router-dom";
-const apiUrl = process.env.REACT_APP_API_URL;
 import Home from './pages/Home';
 import { useEffect,useState } from "react";
 import Loader from "./components/Loader";
@@ -20,6 +19,10 @@ import Navbar from "./components/Navbar";
 
 
 function App() {
+
+
+const apiUrl = process.env.REACT_APP_API_URL;
+
   const {loading,portfolioData, reloadData}= useSelector(state=>state.root);
 const[data,setdata] = useState('')
   const dispatch = useDispatch();
