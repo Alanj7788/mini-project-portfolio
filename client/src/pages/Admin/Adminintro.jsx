@@ -18,7 +18,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
   const onFinish=async(values)=>{
     try{
       dispatch(ShowLoading())
-      const response= await axios.post("/api/portfolio/update-intro/" + user.id, { 
+      const response= await axios.post(`${apiUrl}/api/portfolio/update-intro/${user.id}`, { 
       ...values,_id: portfolioData.intro._id,});
 
         dispatch(HideLoading())
@@ -42,7 +42,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     formData.append('file', file);
     try {
       dispatch(ShowLoading());
-      const response = await axios.post("/api/portfolio/upload/" + user.id ,formData);
+      const response = await axios.post(`${apiUrl}/api/portfolio/upload/${user.id}` ,formData);
       console.log(formData);
       dispatch(HideLoading());
       if (response.data.success) {
