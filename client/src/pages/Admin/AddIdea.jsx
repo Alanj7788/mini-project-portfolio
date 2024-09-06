@@ -1,5 +1,5 @@
 import React from 'react'
-const apiUrl = process.env.REACT_APP_API_URL;
+
 import { useSelector, useDispatch } from 'react-redux'
 import {Form, Modal, message} from "antd";
 import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
@@ -8,6 +8,9 @@ import axios from 'axios';
 
 
 function AddIdea() {
+
+
+const apiUrl = process.env.REACT_APP_API_URL;
     const dispatch=useDispatch();
     const {portfolioData}= useSelector((state)=>state.root);
     const {ideas} = portfolioData; 
