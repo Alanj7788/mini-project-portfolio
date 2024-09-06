@@ -1,5 +1,5 @@
 import React from 'react'
-const apiUrl = process.env.REACT_APP_API_URL;
+
 import { Form, message } from 'antd'
 import { useDispatch, useSelector } from 'react-redux';
 import { HideLoading, ShowLoading } from "../../redux/rootSlice";
@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 function AdminContact() {
-  
+  const apiUrl = process.env.REACT_APP_API_URL;
   const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
 
