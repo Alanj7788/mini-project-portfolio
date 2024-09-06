@@ -6,6 +6,9 @@ import { HideLoading, ShowLoading } from '../../redux/rootSlice';
 import { message } from "antd";
 
 export default function ManageSearch() {
+
+
+const apiUrl = process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
     const [list, setList] = useState([]);
     const [search, setSearch] = useState([]);
