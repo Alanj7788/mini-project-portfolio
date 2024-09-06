@@ -3,6 +3,10 @@ import axios from 'axios';
 import { motion } from "framer-motion"
 
 export default function ViewUsers() {
+
+
+
+const apiUrl = process.env.REACT_APP_API_URL;
     const [list, setList] = useState([]);
     const [search, setSearch] = useState([]);
     const [showAll, setShowAll] = useState(false);
