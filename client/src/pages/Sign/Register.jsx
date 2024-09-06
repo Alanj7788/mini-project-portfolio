@@ -28,13 +28,13 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
     event.preventDefault();
 
-  axios.post("/api/portfolio/initialsidebar",{ownerid:id,fblink:" ",gitlink:" ",instalink:" ", linkedinlink:" ",maillink:" "})
+  axios.post(`${apiUrl}/api/portfolio/initialsidebar`,{ownerid:id,fblink:" ",gitlink:" ",instalink:" ", linkedinlink:" ",maillink:" "})
    
-  axios.post("/api/portfolio/initialintro",{ownerid:id,welcomeText:" ",firstName,lastName,description:" ",caption:" ",image:" "})
+  axios.post(`${apiUrl}/api/portfolio/initialintro`,{ownerid:id,welcomeText:" ",firstName,lastName,description:" ",caption:" ",image:" "})
 
-  axios.post("/api/portfolio/initialAbout",{ownerid:id,lottieURL:" ",description1:" ",description2:" ",skills:" "})
+  axios.post(`${apiUrl}/api/portfolio/initialAbout`,{ownerid:id,lottieURL:" ",description1:" ",description2:" ",skills:" "})
 
-  axios.post("/api/portfolio/initialcontact",{name:" ",email,gender:" ",age:" ",mobile,address:" ",ownerid:id})
+  axios.post(`${apiUrl}/api/portfolio/initialcontact`,{name:" ",email,gender:" ",age:" ",mobile,address:" ",ownerid:id})
 
     // Add validation logic
     if (password !== confirmPassword) {
@@ -45,7 +45,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     try {
       dispatch(ShowLoading())
       // Make a POST request to your backend for user registration
-      const response = await axios.post('/api/user/register', {
+      const response = await axios.post(`${apiUrl}/api/user/register`, {
         email,
         id,
         password,
