@@ -7,6 +7,10 @@ import { message } from "antd";
 
 
 export default function ManageIdea() {
+
+
+const apiUrl = process.env.REACT_APP_API_URL;
+
     const dispatch = useDispatch();
     const [list, setList] = useState([]);
     const [search, setSearch] = useState([]);
