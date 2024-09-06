@@ -21,7 +21,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
     try {
       dispatch(ShowLoading());
-      const response = await axios.post('/api/user/login', {
+      const response = await axios.post(`${apiUrl}/api/user/login`, {
         email,
         password,
       });
