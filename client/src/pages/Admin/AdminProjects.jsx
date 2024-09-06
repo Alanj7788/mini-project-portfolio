@@ -30,11 +30,11 @@ console.log(user.id)
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/portfolio/update-project/"+user.id, { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post(`${apiUrl}/api/portfolio/update-project/${user.id}`, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/portfolio/add-project/"+user.id,
+          response=await axios.post(`${apiUrl}/api/portfolio/add-project/${user.id}`,
           values);
         }
         
@@ -61,7 +61,7 @@ console.log(user.id)
     const onDelete=async (item) => {
       try {
         dispatch(ShowLoading());
-        const response= await axios.post("/api/portfolio/delete-project",{
+        const response= await axios.post(`${apiUrl}/api/portfolio/delete-project`,{
           _id:item._id,
         });
         dispatch(HideLoading());
