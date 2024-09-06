@@ -1,4 +1,5 @@
 import React from 'react'
+const apiUrl = process.env.REACT_APP_API_URL;
 import { useSelector, useDispatch } from 'react-redux'
 import {Form, Modal, message} from "antd";
 import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
@@ -23,11 +24,11 @@ function AdminExperience() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/portfolio/update-experience/"+user.id, { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post(`${apiUrl}/api/portfolio/update-experience/${user.id}`, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/portfolio/add-experience/"+user.id,
+          response=await axios.post(`${apiUrl}/api/portfolio/add-experience/${user.id}`,
           values);
         }
         
@@ -54,7 +55,7 @@ function AdminExperience() {
     const onDelete=async (item) => {
       try {
         dispatch(ShowLoading());
-        const response= await axios.post("/api/portfolio/delete-experience",{
+        const response= await axios.post(`${apiUrl}/api/portfolio/delete-experience`,{
           _id:item._id,
         });
         dispatch(HideLoading());
