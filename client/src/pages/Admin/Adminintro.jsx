@@ -6,7 +6,9 @@ import axios from 'axios';
 
 
 function Adminintro() {
-  
+
+
+const apiUrl = process.env.REACT_APP_API_URL;  
   const dispatch = useDispatch();
 
   const {portfolioData} = useSelector((state)=> state.root);
