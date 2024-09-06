@@ -14,7 +14,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     const [selectedSem, setSelectedSem] = useState('All'); // Add selected semester state
 
     useEffect(() => {
-        axios.get('/api/ids/get-all-userid')
+        axios.get(`${apiUrl}/api/ids/get-all-userid`)
             .then((result) => {
                 const filteredList = result.data; 
                 setList(filteredList);
