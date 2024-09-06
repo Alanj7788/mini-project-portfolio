@@ -1,4 +1,5 @@
 import React from 'react'
+const apiUrl = process.env.REACT_APP_API_URL;
 import { useSelector, useDispatch } from 'react-redux'
 import {Form, Modal, message} from "antd";
 import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
@@ -25,11 +26,11 @@ function AddIdea() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/idea/update-idea/"+user.id, { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post("${apiUrl}/api/idea/update-idea/"+user.id, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/idea/add-idea/"+user.id,
+          response=await axios.post("${apiUrl}/api/idea/add-idea/"+user.id,
           values);
           
         }
@@ -57,7 +58,7 @@ function AddIdea() {
     const onDelete=async (item) => {
       try {
         dispatch(ShowLoading());
-        const response= await axios.post("/api/idea/delete-idea",{
+        const response= await axios.post("${apiUrl}/api/idea/delete-idea",{
           _id:item._id,
         });
         dispatch(HideLoading());
