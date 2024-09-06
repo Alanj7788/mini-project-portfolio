@@ -16,7 +16,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        axios.get('/api/ids/get-all-userid')
+        axios.get(`${apiUrl}/api/ids/get-all-userid`)
             .then((result) => {
                 const filteredList = result.data;
                 setList(filteredList);
@@ -46,7 +46,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     const onDelete = async (user) => {
         try {
             dispatch(ShowLoading());
-            const response = await axios.post("/api/portfolio/delete-user", {
+            const response = await axios.post(`${apiUrl}/api/portfolio/delete-user`, {
                 _id: user._id,
             });
             dispatch(HideLoading());
