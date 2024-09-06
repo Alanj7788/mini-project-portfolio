@@ -1,4 +1,5 @@
 import React from 'react'
+const apiUrl = process.env.REACT_APP_API_URL;
 import { useSelector, useDispatch } from 'react-redux'
 import {Form, Modal, message} from "antd";
 import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
@@ -24,11 +25,11 @@ function AdminAcademic() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("/api/portfolio/update-academic/"+user.id, { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post("${apiUrl}/api/portfolio/update-academic/"+user.id, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("/api/portfolio/add-academic/"+user.id,
+          response=await axios.post("${apiUrl}/api/portfolio/add-academic/"+user.id,
           values);
         }
         
@@ -55,7 +56,7 @@ function AdminAcademic() {
     const onDelete=async (item) => {
       try {
         dispatch(ShowLoading());
-        const response= await axios.post("/api/portfolio/delete-academic",{
+        const response= await axios.post("${apiUrl}/api/portfolio/delete-academic",{
           _id:item._id,
         });
         dispatch(HideLoading());
