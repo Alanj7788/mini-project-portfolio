@@ -17,7 +17,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     try {
       dispatch(ShowLoading())
       console.log("log", portfolioData)
-      const response = await axios.post("/api/portfolio/update-left/" + user.id, {
+      const response = await axios.post(`${apiUrl}/api/portfolio/update-left/${user.id}`, {
         ...values, _id: portfolioData.left._id,
       });
 
