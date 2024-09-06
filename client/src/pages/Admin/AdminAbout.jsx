@@ -1,4 +1,5 @@
 import React from 'react'
+const apiUrl = process.env.REACT_APP_API_URL;
 import { Form, message } from 'antd'
 import { useDispatch, useSelector } from 'react-redux';
 import { HideLoading, ShowLoading } from "../../redux/rootSlice";
@@ -20,7 +21,7 @@ function AdminAbout() {
 
 
       dispatch(ShowLoading())
-      const response = await axios.post(`/api/portfolio/update-about/${user.id}`, {
+      const response = await axios.post(`${apiUrl}/api/portfolio/update-about/${user.id}`, {
         ...values, _id: portfolioData.about._id,
       });
 
