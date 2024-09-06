@@ -7,6 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 const Loginform = () => {
+
+
+
+const apiUrl = process.env.REACT_APP_API_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
