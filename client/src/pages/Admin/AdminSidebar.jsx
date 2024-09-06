@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HideLoading, ShowLoading } from "../../redux/rootSlice";
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL;
 
 function AdminSidebar() {
 
-
+const apiUrl = process.env.REACT_APP_API_URL;
   const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
   const dispatch = useDispatch();
