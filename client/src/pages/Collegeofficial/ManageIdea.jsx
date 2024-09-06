@@ -19,7 +19,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     
 
     useEffect(() => {
-        axios.get('/api/idea/get-all-useridea')
+        axios.get(`${apiUrl}/api/idea/get-all-useridea`)
             .then((result) => {
                 const filteredList = result.data; 
                 setList(filteredList);
@@ -46,7 +46,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     const onDelete = async (idea) => {
         try {
             dispatch(ShowLoading());
-            const response = await axios.post("/api/idea/delete-aidea", {
+            const response = await axios.post(`${apiUrl}/api/idea/delete-aidea`, {
                 _id: idea,
             });
             dispatch(HideLoading());
