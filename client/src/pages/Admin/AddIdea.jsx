@@ -26,11 +26,11 @@ function AddIdea() {
         let response;
         if(selectedItemForEdit)
         {
-          response = await axios.post("${apiUrl}/api/idea/update-idea/"+user.id, { ...values, _id: selectedItemForEdit._id });
+          response = await axios.post(`${apiUrl}/api/idea/update-idea/${user.id}`, { ...values, _id: selectedItemForEdit._id });
 
         }
         else {
-          response=await axios.post("${apiUrl}/api/idea/add-idea/"+user.id,
+          response=await axios.post(`${apiUrl}/api/idea/add-idea/${user.id}`,
           values);
           
         }
@@ -58,7 +58,7 @@ function AddIdea() {
     const onDelete=async (item) => {
       try {
         dispatch(ShowLoading());
-        const response= await axios.post("${apiUrl}/api/idea/delete-idea",{
+        const response= await axios.post(`${apiUrl}/api/idea/delete-idea`,{
           _id:item._id,
         });
         dispatch(HideLoading());
